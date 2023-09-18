@@ -1,0 +1,38 @@
+*{margin:0;padding:0;border:0;-webkit-text-size-adjust:none;text-size-adjust:none;
+    -webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;}
+    @mixin font-family{font-family:-apple-system, AppleSDGothicNeo, 'system-ui', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;}
+    img,fieldset{border:0;outline:0;vertical-align:top;}
+    li,ol,dl{list-style:none;vertical-align:top;}
+    /* ul:after,ol:after,dl:after{content:'';clear:both;display:block;}   */
+    input,select,button,textarea{vertical-align:middle; font-size:1.6rem;}
+    h1,h2,h3,h4,h5,h6{font-weight:normal;}
+    address,em{font-style:normal;font-weight:normal;}
+    html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, acronym, address, big, cite,
+    code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {-webkit-text-size-adjust:none;text-size-adjust:none;line-height:1.2; margin:0; padding:0; border:0;}
+    article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,canvas{-webkit-text-size-adjust:none;text-size-adjust:none;display:block;margin:0; padding:0; border:0;}
+    input, select, textarea {margin:0;padding:0;vertical-align:middle;box-shadow:none;}
+    fieldset, img {border:0;outline:0;}
+    html, h1, h2, h3, h4, h5, h6, p, em, font, small, strong{@include font-family;font-weight:normal;font-style:normal;font-size:10px;letter-spacing:-0.02em;-webkit-text-size-adjust:none;text-size-adjust:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+    body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale; min-height: 100vh;margin: 0 auto;}
+    code{font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;}
+    input,select,textarea,option{letter-spacing:0;}
+    input,select,textarea,option,button,a{-webkit-tap-highlight-color:transparent;outline:0;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+    input[type='text']:focus, input[type='password']:focus, input[type='tel']:focus, textarea:focus, select:focus {outline:0;}
+    input[type='checkbox'],input[type='radio'] {border:0 !important;outline:0 !important; padding:0 !important; margin:0;cursor:pointer;}
+    select::-ms-expand{display:none;}
+    select{width:100%;border:0;outline:0;background-color:#fff;}
+    ::-moz-input-placeholder,::-webkit-input-placeholder,::-ms-input-placeholder,::-o-input-placeholder,::input-placeholder,::placeholder{color:#aaa;}
+    ::placeholder{opacity:1;}
+    textarea::placeholder{color:#aaa;}
+    button{border:0;outline:0;cursor:pointer;background-color:initial;line-height:1;box-shadow:none;@include font-family; height: 56px; padding: 0 20px; border-radius: 16px; cursor: pointer;box-sizing: border-box;text-transform: uppercase;  transition: all 0.4s;}
+    label{cursor:pointer;}
+    table{width:100%;border-collapse:collapse;border-spacing:0;table-layout:fixed;word-break:break-all;}
+    table th, table td{vertical-align:middle;}
+    a{display:block;width:100%;height:100%;margin:0;padding:0;background:transparent;cursor:pointer;text-decoration:none;}
+    a:link,a:visited,a:hover,a:active{text-decoration:none;color:inherit;border:none;outline:none;}
+    .blind{position:absolute;clip:rect(0 0 0 0);width:1px;height:1px;margin:-1px;overflow: hidden;}
+    
+    
+    
+    

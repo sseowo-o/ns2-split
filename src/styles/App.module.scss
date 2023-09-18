@@ -1,0 +1,578 @@
+$base-bg:#f5f5f5; $dark-base-bg:#171717;
+$tcol-f1:#121212; $tcol-f2:#424242; $tcol-f3:#757575; $tcol-f4:#a2a2a2; $tcol-f5:#e9e9e9;
+$dark-tcol-f1:#fff; $dark-tcol-f2:#ddd; $dark-tcol-f3:#cecece; $dark-tcol-f4:#8d8d93; $dark-tcol-f5:#333;
+.darkbtn{display: block;width:8px;height:8px;background-color: #999;z-index:9999;position:fixed;top:0;left:0;}
+.App{
+    & .Allwrap{margin:0 auto;overflow:hidden;
+        & .Innerwrap{overflow:hidden;margin:0 auto;}}
+}
+@mixin rel{position:relative;}
+@mixin absolute($p:absolute, $t:null, $b:null, $l:null, $r:null){position:$p;top:$t;bottom:$b;left:$l;right:$r;}
+@mixin flex{display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:flex;}
+@mixin flex-wrap{-webkit-box-lines:multiple;-moz-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;}
+@mixin flex-nowrap{-webkit-box-lines:single;-moz-flex-wrap:nowrap;-ms-flex-wrap:nowrap;flex-wrap:nowrap;}
+@mixin flex-row{-webkit-box-orient:horizontal;-moz-flex-direction:row;-ms-flex-direction:row;flex-direction:row;}
+@mixin flex-column{-webkit-box-orient:vertical;-moz-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}
+@mixin flex-start{-webkit-box-pack:start;-moz-box-justify-content:flex-start;-ms-flex-pack:start;justify-content:flex-start;}
+@mixin flex-center{-webkit-box-pack:center;-moz-box-justify-content:center;-ms-flex-pack:center;justify-content:center;}
+@mixin flex-between{-webkit-box-pack:justify;-moz-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}
+@mixin flex-end{-webkit-box-pack:end;-moz-box-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;}
+@mixin flex-item-center{-webkit-box-align:center;-moz-align-items:center;-ms-flex-align:center;align-items:center;}
+@mixin flex-item-grw{-webkit-box-flex:1;-webkit-flex:1;-ms-flex:1;flex:1;flex-grow:1;}
+@mixin flex-item-srk{-webkit-flex-shrink:0;-ms-flex:0 0 auto;flex:0 0 auto;flex-shrink:0;}
+@mixin flex-item-eql{-webkit-box-flex:1 1;-webkit-flex:1 1;-ms-flex:1 1 0%;flex:1 1;}
+@mixin flex-item-bas($w:null){-webkit-box-flex:0 0 $w;-webkit-flex:0 0 $w;-ms-flex:0 0 $w;flex:0 0 $w;}
+@mixin radius($radius){-webkit-border-radius:$radius;-webkit-border-radius:$radius;-moz-border-radius:$radius;-o-border-radius:$radius;-ms-border-radius:$radius;border-radius:$radius;}
+@mixin ellip{display:block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;word-break:break-all;}
+@mixin ellip-oln{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;word-break:break-all;text-overflow:ellipsis;white-space:normal;}
+@mixin ellip-tln{-webkit-box-orient:vertical;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;white-space:normal;word-break:break-all;text-overflow:ellipsis;}
+@mixin arr($bs:solid, $bw:0 1px 1px 0, $dis:inline-block, $pdg:null, $valign:middle){border-style:$bs;border-width:$bw;display:$dis;padding:$pdg;vertical-align:$valign;}
+$arr-sr-pdg:4px; $arr-mr-pdg:6px;
+@mixin transZ($transZ){-webkit-transform:translateZ($transZ);-moz-transform:translateZ($transZ);-o-transform:translateZ($transZ);-ms-transform:translateZ($transZ);transform:translateZ($transZ);}
+@mixin rotation($rotation){-webkit-transform:rotate($rotation);-moz-transform:rotate($rotation);-o-transform:rotate($rotation);-ms-transform:rotate($rotation);transform:rotate($rotation);}
+@mixin transX($transX){-webkit-transform:translateX($transX);-moz-transform:translateX($transX);-o-transform:translateX($transX);-ms-transform:translateX($transX);transform:translateX($transX);}
+@mixin transY($transY){-webkit-transform:translateY($transY);-moz-transform:translateY($transY);-o-transform:translateY($transY);-ms-transform:translateY($transY);transform:translateY($transY);}
+@mixin transform($sec){-webkit-transform:($sec);-moz-transform:($sec);-o-transform:($sec);-ms-transform:($sec);transform:($sec);}
+@mixin pop-transition{-webkit-transition:1s;-moz-transition:1s;-o-transition:1s;-ms-transition:1s;transition:1s;}
+@mixin pop-center{-webkit-transform:translate(-50%, -50%);-moz-transform:translate(-50%, -50%);-o-transform:translate(-50%, -50%);-ms-transform:translate(-50%, -50%);transform:translate(-50%, -50%);}
+@mixin cont($cnt:'', $dis:block){content:$cnt;display:$dis;}
+@mixin clear{@include cont;clear:both;}
+$btn-sml-h:46px; $btn-med-h:56px; $btn-big-h:64px;
+$btn-press-bg:#339da7; $btn-radius:6px;
+@mixin btn-sml($w:100%, $dis:block, $h:$btn-sml-h, $lh:$h, $fs:1.5rem, $radius:$btn-radius){display:$dis;height:$h;line-height:$lh;font-size:$fs;width:$w;@include radius($radius);}
+@mixin btn-med($w:100%, $dis:block, $h:$btn-med-h, $lh:$h, $fs:1.6rem, $radius:$btn-radius){display:$dis;height:$h;line-height:$lh;font-size:$fs;width:$w;@include radius($radius);}
+@mixin btn-big($w:100%, $dis:block, $h:$btn-big-h, $lh:$h, $fs:1.7rem, $radius:$btn-radius){display:$dis;height:$h;line-height:$lh;font-size:$fs;width:$w;@include radius($radius);}
+@mixin btn-press{background-color:$btn-press-bg;}
+@mixin btn-wh{border-width:1px;border-style:solid;}
+@mixin box-border{@include cont($dis:block);@include absolute($t:0, $b:0, $l:0, $r:0);border:1px solid rgba(0,0,0,.15);@include radius(inherit);}
+$BottomNav-h:54px;
+$sidemar:16px; $olnlist-h:52px; //common동일
+$topmar:24px; $olnlist-topmar:12px;
+$MainTopbar-h:56px;
+$MainTopbar-icn-w:22px; $MainTopbar-icn-h:22px;
+$MainTopbar-btw-pdg:4px; $MainTopbar-btw-w:($sidemar)-($MainTopbar-btw-pdg);
+$MainTopbar-pen-icn-w:26px; $MainTopbar-pen-icn-h:26px;
+$serviceM-icn-w:30px; $serviceM-icn-h:30px;
+$txt-ln-h:1.3;
+$btnTab-icn-w:18px; $btnTab-icn-h:18px;
+.inner{@include rel;padding:0 $sidemar;}
+.BottomSection{@include absolute(fixed, $b:0, $l:0, $r:0);border-top-width:1px;border-top-style:solid;z-index:50;
+    & .BottomNav{@include flex; width:100%;}
+        & ul.BottomNavList{overflow: hidden;width:100%;display: flex;justify-content: center;}
+            & li{width:100%;height:$BottomNav-h;position:relative;text-align:center;}
+}
+.topblock{@include rel;margin-top:76px;}
+.detviewtab{@include rel;margin-top:20px;}
+.mTxtarea{@include rel;margin-top:12vh;
+    & .inner{margin:0 34px;padding:36px 0 50px;
+        & .mtitArea{
+            & .mTit{line-height:$txt-ln-h;}}
+        & .mtxtArea{margin-top:10px;
+            & .mTxt{line-height:$txt-ln-h;}}}
+}
+.profile{@include rel;margin-bottom:$topmar;
+    & .inner{@include flex;@include flex-item-center;
+        & .userthumb{@include rel;@include flex-item-srk;width:74px;height:74px;overflow:hidden;margin-right:12px;@include radius(50%);white-space:nowrap;
+            &:after{@include box-border;}
+            & .thumbBox{display:block;background-size:cover;
+                & img{width:100%;}}}
+        & .infoBox{overflow: hidden;@include flex-item-grw;
+            & .Name{@include ellip;}
+            & .Email{@include ellip;margin-top:6px;}}}
+}
+.Smysprofile{
+    & .profile{
+        & .inner{display:block;
+            & .userthumb{margin:0 auto;}
+            & .infoBox{text-align:center;}}}
+}
+.arrMR{width:12px;height:12px;margin-left:3px;text-align:right;
+    & .icnArr{@include arr($pdg:$arr-mr-pdg); @include rotation(-45deg);}}
+.arrSR{@include absolute($t:16px, $r:$sidemar);
+    & .icnArr{@include arr($pdg:$arr-sr-pdg);@include rotation(-45deg);}}
+.headerSection{@include absolute(fixed, $t:0, $l:0, $r:0);z-index:49;
+    &.DetailTopbar{
+        & .headerGnb{
+            & .GnbCenter{
+                & .gnbTitBar{padding-left:0;
+                    & .btntitbar{width:100%;
+                        & .Itemwrap{@include rel;
+                            & .wrapArea{@include absolute($b:6px, $l:50%);height:auto;width:18px;}}}}}}}
+    &.SubtitTopbar{
+        & .gnbTitBar{padding-left:0;padding-right:40px;}}
+    & .gnbTitBar{max-width:100%;height:$MainTopbar-h;text-align:center;padding-left:40px;
+        & .gnbTitle{@include ellip-oln;}}
+    & .headerGnb{@include flex;table-layout:fixed;background-color:transparent;height:$MainTopbar-h;
+        & .wrapArea{display:inline-block;width:$MainTopbar-icn-w;height:$MainTopbar-icn-h;}
+        & button{display:inline-block;vertical-align:top;height:$MainTopbar-h;}
+        & .GnbLeft{margin-right:auto;
+            &.outgnb{
+                & button{padding-left:$sidemar;padding-right:$MainTopbar-btw-w;}}
+            &.in1gnb{
+                & button{padding-left:$MainTopbar-btw-w;padding-right:$MainTopbar-btw-w;}}
+            &.in2gnb{
+                & button{padding-left:$MainTopbar-btw-w;padding-right:$MainTopbar-btw-w;}}
+            & .gnbPen{@include rel;vertical-align:top;
+                & .count{@include absolute($t:8px, $r:0);display:inline-block;padding:2px 4px 3px;z-index:3;@include radius(8px);}
+                & .btnpen{@include rel;}
+                    & .wrapArea{width:$MainTopbar-pen-icn-w;height:$MainTopbar-pen-icn-h;}}
+            & .btneditpen{
+                & .wrapArea{@include rel;
+                    & svg{@include absolute($t:0, $l:0);width:auto;height:$MainTopbar-pen-icn-h;}}}}
+        & .GnbCenter{max-width:100%;@include flex-item-grw;vertical-align:top;}
+        & .GnbRight{margin-left:auto;
+            &.outgnb{
+                & button{padding-left:$MainTopbar-btw-w;padding-right:$sidemar;}}
+            &.in1gnb{
+                & button{padding-left:$MainTopbar-btw-w;padding-right:$MainTopbar-btw-w;}}
+            &.in2gnb{
+                & button{padding-left:$MainTopbar-btw-w;padding-right:$MainTopbar-btw-w;}}
+            &.in3gnb{
+                & button{padding-left:$MainTopbar-btw-w;padding-right:$MainTopbar-btw-w;}}
+            &.in4gnb{
+                & button{padding-left:$MainTopbar-btw-w;padding-right:$MainTopbar-btw-w;}}
+            & .gnbTag{vertical-align:top;}
+            & .gnbSch{vertical-align:top;}
+            & .gnbEdit{vertical-align:top;
+                & .wrapArea{width:28px;height:28px;}}
+            & .gnbMore{vertical-align:top;}}}
+}
+.headerArea{@include rel;overflow:hidden;}
+:global .btab{@include rel;}
+.btntab{@include rel;
+    & .inner{padding:0;
+        & .tabList{@include flex;@include flex-row;@include flex-end;
+            & li{display:inline-block;
+                & button{padding:$sidemar;
+                    & .wrapArea{width:$btnTab-icn-w;height:$btnTab-icn-h;}}}}}
+}
+.infotopArea{@include rel;border-bottom-width:1px;border-bottom-style:solid;
+    & .infotopBox{margin-bottom:16px;@include flex;
+        & .icndot{margin-right:6px;margin-top:2px;
+            & .wrapArea{display:inline-block;width:6px;height:6px;}}
+        & .txtwrap{
+            & .infotoptxt{vertical-align:middle;}}}
+}
+.tabcontwrap{@include rel;}
+.btbcont{@include rel;display:none;
+    &.active{display: block;}}
+.Container{@include rel;width:100%;}
+.Contentswrap{@include rel;padding-bottom:100px;}
+.ContentLt{@include rel;}
+.ContentRt{@include rel;}
+.Spagedetail{@include rel;height: 100vh;overflow: hidden}
+.blockArea{@include rel;margin-bottom:$topmar;}
+$pagelisttab-mar-top:16px;
+.allpageArea{@include rel;
+    &.timepagevw{margin-top:20px;
+        &:first-child{margin-top:0;}
+        & .inner{margin-top:$pagelisttab-mar-top;
+            & .notepageCont{background-color:#fff;}}}
+    &.notepagevw{
+        & .inner{margin-top:$pagelisttab-mar-top;
+            & .notepageCont{background-color:transparent;
+                & .pagewriteArea{background-color:#fff;}}}}
+    &.miniapagevw{
+        & .inner{margin-top:$pagelisttab-mar-top;}}
+    &.detpagevw{
+      & .inner{
+        & .notedate{text-align:center;}
+          & .notepageItem{
+            & .notepageArtc{margin-top:$sidemar;
+              &:first-child{margin-top:0;}
+                & .notepageCont{background-color:transparent;}}}}}
+}
+.notedate{@include rel;padding-bottom:12px;text-align:left;}
+.thumbBox{width:100%;height:100%;background-size:cover;display: block;
+    & img{width:100%;}
+}
+.pageContwrap{@include rel;@include flex;@include flex-wrap;margin: 0 auto;width:100%;
+  & .notepagewrap{@include rel;@include flex-item-eql;
+    & .notepageList{overflow: visible;
+      & .notepageItem{@include rel;width:48.5%;display:inline-block;overflow:hidden;margin-left:2%;margin-top:2%}}
+        & .notepageArtc{@include rel;}
+          & .notepageScr{@include rel;
+            & .notepageCont{@include rel;height:0;padding-top:0%;background-color:transparent;
+              & .pagewriteBack{@include absolute($t:0, $l:0, $r:0);width:100%;height:100%;
+                & .pagewriteArea{@include rel;width:100%;height:100%;color:$tcol-f1;overflow:visible;}}}}}
+}
+.pageContwrapNativeCustom::-webkit-scrollbar {
+    display: none
+}
+.pageContwrapWebCustom::-webkit-scrollbar {
+    height: 4px;
+    background-color: transparent;
+}
+
+.pageContwrapWebCustom::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.pageContwrapWebCustom::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 131, 143, 0.7);
+    border-radius: 10px;
+}
+.larviewtabOnePage{
+    & .pageContwrap{
+        & .notepagewrap{
+            & .notepageItem{width:98%;margin-left:0;margin-top:0}
+                }}
+}
+.larviewtab{
+    & .pageContwrap{
+        & .notepagewrap{
+            & .notepageItem{width:49%;
+                &:nth-child(2n){margin-left:0;}
+                &:nth-child(-n+3){margin-top:0}}}}
+}
+.medviewtab{
+    & .pageContwrap{
+        & .notepagewrap{
+            & .notepageItem{width:23.5%;
+                &:nth-child(4n+2){margin-left:0;}
+                &:nth-child(-n+5){margin-top:0}}}}
+}
+.smlviewtab{
+    & .pageContwrap{
+        & .notepagewrap{
+            & .notepageItem{width:14.0%;
+                &:nth-child(6n+2){margin-left:0;}
+                &:nth-child(-n+7){margin-top:0}}}}
+}
+.boardviewtab{
+    & .pageContwrap{
+        & .notepagewrap{
+            & .notepageItem{width:47%;margin-left:6%;
+                &:nth-child(odd){margin-left:0;}
+                &:nth-child(-n+2){margin-top:0;}
+                & .pagewriteArea{@include radius(4px);
+                    &:after{@include box-border;}}
+                & .captitbox{@include ellip-tln;}}}}
+    & .bookContwrap{
+        & .notepageItem{
+            margin-bottom: 20px;
+            & .notepageCap{
+                margin-top: 15px;
+                    & .btncapmore{top: -15px;}}}}
+}
+.icnBookmark{width:17px;height:24px;}
+.pageRecmark{@include absolute($b:0, $l:0);z-index:2;padding:10px;background-color:transparent;display:inline-block;
+    & .icnRecmark{width:26px;height:26px;}
+}
+.notepageCap{@include flex;@include flex-column;@include rel;@include flex-center;margin:8px 0 12px;
+    & .pagecapinner{@include flex;@include flex-item-center;
+        & .pagecapbox{@include rel;@include flex-item-eql;overflow:hidden;
+            & .captitbox{@include ellip-oln;}
+            & .captxtbox{@include ellip-oln;margin-top:4px;}}}
+}
+$notelist-cap-icn-w:48px; $notelist-cap-icn-h:48px; $notelist-cap-icn-y:($notelist-cap-icn-h)+12px;
+.pageContwrap{
+    & .btncapmore{@include flex-item-bas($w:46px);}
+}
+.btncapmore{@include rel;width:44px;height:44px;z-index:3;
+    & .wrapArea{width:4px;height:16px;display:inline-block;}
+}
+$notebook-thum-w:54px; $notebook-thum-h:76px;
+.bookContwrap{
+    & .btncapmore{display:inline-block;width:$notelist-cap-icn-w;height:$notelist-cap-icn-y;@include absolute($t:0, $r:0);}
+    & .btncapPen{width:$notelist-cap-icn-w;height:$notelist-cap-icn-y;@include absolute($t:0, $l:auto, $r:49px);}
+    & .notebookScr{width:$notebook-thum-w;height:$notebook-thum-h;@include radius(4px);z-index:2;overflow:hidden;background-color:#fff;
+        &:after{@include box-border;}}
+}
+.btncapPen{width:44px;height:44px;z-index:3;@include absolute($t:0, $l:0, $r:auto);
+    & .wrapArea{width:32px;height:32px;display:inline-block;}
+}
+.listviewtab{
+    & .notepagevw{
+        & .inner{padding:0;}}
+    & .miniapagevw{
+        & .inner{padding:0;}}
+}
+.bookContwrap{@include rel;
+    & .bookListwrap{@include rel;
+        & .notebookList{overflow:hidden;
+            & .notebookItem{@include rel;padding-left:18px;margin-top:$olnlist-topmar;
+                &:first-child{margin-top:0;}
+                & .notebookArtc{@include flex;@include flex-column;@include flex-center;@include rel;padding:28px 16px 30px 48px;margin-left:24px;text-align:left;
+                    & .notebookScr{@include absolute($l:-24px);}}
+                & .notebookCap{@include flex;@include flex-item-center;
+                    & .bookInfobox{@include flex-item-eql;overflow:hidden;@include ellip;vertical-align:middle;padding-right:90px;
+                        & .bookdate{@include ellip;vertical-align:middle;display:inline-block;}
+                        & .vertibar{display:inline-block;width:1px;height:8px;background-color:#a2a2a2;margin:0 10px;}
+                        & .bookLang{@include ellip;display:inline-block;vertical-align:middle;}}
+                    & .bookIcnbox{@include flex;@include rel;margin-left:10px;}}
+                & .notebookTit{margin-top:8px;
+                    & .bookNametit{@include ellip-oln;}}
+                & .notebookUse{margin-top:12px;@include ellip-oln;
+                    & .usenumtxt{margin-left:10px;letter-spacing:0;}}}
+            & .notebookItemSelect{@include rel;width: 100vw; margin-top:$olnlist-topmar;
+                & .notebookArtc{@include flex;@include flex-column;@include flex-center;@include rel;padding:13px 16px 12px 90px;text-align:left;height:105px;
+                    & .notebookScr{@include absolute($l: 23px);}}
+                & .notebookCap{@include flex;@include flex-item-center;
+                    & .bookInfobox{@include flex-item-eql;overflow:hidden;@include ellip;vertical-align:middle;padding-right:90px;
+                        & .bookdate{@include ellip;vertical-align:middle;display:inline-block;}
+                        & .vertibar{display:inline-block;width:1px;height:8px;background-color:#a2a2a2;margin:0 10px;}
+                        & .bookLang{@include ellip;display:inline-block;vertical-align:middle;}}
+                    & .bookIcnbox{@include flex;@include rel;margin-left:10px;}}
+                & .notebookTit{margin-top:8px;
+                    & .bookNametit{@include ellip-oln;}}
+                & .notebookUse{margin-top:12px;@include ellip-oln;
+                    & .usenumtxt{margin-left:10px;letter-spacing:0;}}}}}
+    & .progresswrap{width:26px;height:26px;}
+}
+.categoryTab{@include rel;margin-top:16px;border-bottom-width:1px;border-bottom-style:solid;
+    & .tabList{@include flex;@include flex-row;
+        & li{margin-right:16px;
+            & .tabMenu{height:44px;@include rel;@include ellip;line-height:44px;text-align:left;padding:0 6px;}}}
+}
+:global .lntab{@include rel;}
+.menutitArea{@include rel;
+    & .subjtitArea{@include rel;@include flex;line-height:2rem;
+        & .subjtitBox{@include flex;@include ellip-oln;margin-right:10px;}
+        & .subjtitLink{@include rel;white-space:nowrap;margin:0 0 0 auto !important;line-height:inherit;
+            & .subjcIcn{display:inline-block;vertical-align:bottom;
+                & .wrapArea{width:16px;height:16px;}}
+            & .subjcLink{display:inline-block;vertical-align:middle;margin-left:2px;}}}
+}
+.miniapagevw{@include rel;
+    & .bookContwrap{
+        & .bookListwrap{
+            & .notebookItem{padding-left:0;
+                & .miniappArtc{@include flex;@include flex-item-center;padding:22px $sidemar 22px;
+                    & .notebookScr{@include rel;@include flex-item-srk;margin-right:15px;}
+                    & .appbookCap{@include flex-item-grw;overflow:hidden;
+                        & .appInfobox{@include ellip;}
+                        & .appbookTit{@include ellip;margin-top:6px;}}
+                    & .recordMore{margin-left:6px;@include flex;@include flex-item-center;
+                        & .rectimebox{margin-right:50px;}
+                        & .btncapmore{text-align:right;@include rel;top:auto;right:auto;padding-right:$sidemar;}}}}
+            &.recListwrap{margin-top:$topmar;
+                &:first-child{margin-top:0;}
+                & .notebookItem{margin-top:0;overflow:hidden;}
+                & .btncapmore{height:($notelist-cap-icn-y)+9px;}
+                & .notedate{margin:0 $sidemar;}
+                & .miniappArtc{padding:12px 0 12px 16px;
+                    & .notebookScr{width:auto;height:auto;background-color:transparent;@include radius(0);
+                        & .wrapArea{width:22px;height:18px;}
+                        &:after{border:none;display:none;}}
+                    & .appbookCap{
+                        & .appbookTit{margin-top:0;
+                            & .bookNametit{font-size:1.7rem;}}
+                        & .appInfobox{margin-top:6px;}}}}}}
+}
+.serviceMenu{@include flex;@include flex-center;margin-top:$topmar;margin-bottom:$topmar;
+    & .menuList{overflow:hidden;
+        & li{width:25%;margin:0 auto;display:inline-block;text-align:center;
+            &:nth-child(-n+4){margin-top:0;}
+            & .ItemBox{display:inline-block;padding:8px 4vw 8px;margin-top:8px;
+                & .serviceIcon{height:($serviceM-icn-h)+6px;
+                    & .wrapArea{display:inline-block;width:$serviceM-icn-w;height:$serviceM-icn-h;}}
+                & .titleBox{display:block;margin-top:4px;}}}}
+}
+.listArea{@include rel;margin-top:$topmar;margin-bottom:$topmar;
+    & .olngnbArea{@include rel;margin-top:$olnlist-topmar;
+        &:first-child{margin-top:0;}
+        & .olngnbList{
+            & .gnbItem{height:$olnlist-h;text-align:left;
+                & .ItemBox{@include rel;}
+                    & .titleBox{@include ellip;line-height:$olnlist-h;padding-left:$sidemar;padding-right:$sidemar+14px;}}}}
+    &.formstlist{
+        & .olnrbtnlist{
+            & .gnbItem{height:auto;
+                & .ItemBox{padding:16px 0;}
+                & .titleBox{white-space:normal;text-overflow:clip;padding-right:80px;
+                    & .olngnbTitle{display:block;@include ellip;}
+                    & .olngnbTxt{display:block;margin-top:8px;}}
+                & .lirightArea{display:inline-block;@include absolute($t:$sidemar, $r:$sidemar);
+                    &.olnlirbtn{top:13px;}}}
+            }
+        & .btntlnList{padding:0;}
+        & .olngnbArea{margin-top:$topmar;}
+        & .formwrap{overflow:hidden;}
+        & .gnbItem{margin-top:8px;
+            &:first-child{margin-top:0;}}
+        & .formname{padding:0 $sidemar;margin-bottom:10px;@include flex;
+            & .formtoptit{@include ellip-oln;}}
+        & .btnItem{padding-left:0;width:50%;margin-left:-1px;
+            &:first-child{margin-left:0;}}}
+}
+.subrtxtArea{@include rel;white-space: nowrap;margin:0 0 0 auto !important;line-height:inherit;}
+.SyncbtnArea{@include rel;}
+.btnArea{@include rel;
+    & .btnSml{@include btn-sml;
+        &.btnSetpen{@include btn-wh;}}
+    & .btnMed{@include btn-med;}
+    & .btnBig{@include btn-big;}
+}
+.btnSync{@include btn-press;}
+.btnLogout{@include btn-press;}
+.btnSave{@include btn-press;}
+.btmPbox{@include rel;margin-top:10px;}
+$npop-li-y-mar:10px; $npop-y-mar:16px;
+.drawerPop{
+    width: inherit !important;
+    position: static !important;
+    transform: none !important;
+}
+.normalPop{@include absolute($t:50%, $l:50%);@include pop-center;width:80%;border:0;box-shadow:none;
+    & .papers{@include rel;
+        & .inner{padding:24px 0;
+            & .papertitArea{@include rel;text-align:center;margin-bottom:24px;padding:0 $sidemar;
+                & .lartit{@include rel;@include ellip;}
+                & .smltxt{@include rel;@include ellip;margin-top:4px;}}
+            & .papercont{@include rel;
+                & .papertopList{overflow:hidden;padding:0 0 $npop-y-mar;border-bottom-width:1px;margin-bottom:$npop-y-mar;border-bottom-style:solid;}
+                & .paperList{overflow:hidden;}
+                & li{
+                    & button{width:100%;@include rel;}}
+                & .paperItem{
+                    & .itemwrap{@include flex;@include flex-item-center;padding:$npop-li-y-mar $sidemar;
+                        &.pagesmartpen{padding:($npop-li-y-mar)-4px 0;}
+                        & .lileftArea{@include flex-item-bas($w:auto);width:20px;height:auto;margin-right:16px;
+                            & .wrapArea{height:20px;width:auto;}}
+                        & .licenterArea{text-align:left;
+                            & .papercntit{@include ellip-oln;}}
+                        & .lirightArea{margin-left:auto;white-space:nowrap;vertical-align:middle;
+                            & .papersmltit{vertical-align:middle;}
+                            & .arrSR{@include rel;top:auto;right:auto;display:inline-block;vertical-align:middle;margin-left:10px;
+                                & .icnArr{padding:3px;}}}}}
+                & .btntlnList{
+                    & .btnItem{width:50%;
+                        & .btnlicnArea{@include rel;
+                            & .wrapArea{width:26px;height:26px;margin:0 auto;}}
+                        & .btnlimtArea{margin-top:8px;text-align:center;}
+                        & .btnlistArea{margin-top:2px;text-align:center;}}}
+                & .btnhlnList{margin-top:$npop-li-y-mar;
+                    & .btnItem{width:33.3%;}}
+                & .btnArea{@include rel;padding:0 $sidemar;margin-top:24px;
+                    & .btnPopout{@include btn-press;}}}}}
+}
+.btnItem{@include rel;padding-left:10px;
+    & button{border-width:1px;border-style:solid;width:100%;@include rel;}
+}
+.btnlnList{overflow:hidden;@include flex;@include flex-wrap;padding:0 $sidemar;
+    & .btnItem{
+        &:first-child{padding-left:0;}
+        & .itemwrap{padding:12px 4px;overflow:hidden;
+            & .btnlimtArea{@include rel;text-align:center;
+                & .paperibtntit{@include ellip;}}
+            & .btnlistArea{@include rel;text-align:center;
+                & .paperibtntxt{@include ellip;}}}}
+}
+.normalPop{
+    & .bookContwrap{
+        & .bookListwrap{
+            & .notebookList{overflow-y: scroll;max-height:480px;
+                & .notebookItem{margin-top:0;margin-bottom:32px;
+                    & .notebookArtc{padding-top:0;padding-bottom:0;height:($notebook-thum-h)+4px;}
+                        & .notebookScr{top:0;}
+                        & .notebookCap{
+                            & .bookInfobox{padding-right:0;}}
+                        & .notebookTit{margin-top:4px;}
+                        & .notebookUse{margin-top:8px;}}}}}
+}
+$loadpop-sidemar:40px;
+.loadingalwrap{z-index:1400;@include absolute(fixed, $t:0, $l:0, $r:0, $b:0);
+    & .loadingback{@include absolute(fixed, $t:0, $l:0, $r:0, $b:0);z-index:-1;background-color:rgba(0,0,0,.5);}
+    & .inner{width:100%;height:100%;padding:0;@include rel;@include flex;@include flex-item-center;@include flex-center;
+        & .loadingwrap{width:100%;@include flex;@include flex-row;@include flex-wrap;
+            & .loadingbar{width:100%;padding:0 $loadpop-sidemar;}
+            & .loadingcap{margin: 0 auto;width:100%;padding:0 $loadpop-sidemar;
+                & .loadpercntxt{text-align:center;margin-top:12px;}
+                & .supportcap{text-align:center;margin-top:24px;}}
+            & .btnArea{width:100%;@include absolute(fixed, $l:0, $r:0, $b:$sidemar);padding:0 $sidemar;}}}
+    &.loadcircle{
+        & .loadingwrap{text-align:center;}}
+}
+.lodcirclewrap{width:100%;@include flex-item-center;height:100%;@include flex;@include flex-center;}
+.progresswrap{@include rel;width:40px;height:40px;margin:0 auto;}
+
+.mTit{font-size:1.5rem;}
+.mTxt{font-size:3rem;}
+.countTxt{font-size:1rem;text-align:center;font-weight:bold;}
+.gnbTitle{font-size:1.7rem;line-height:$MainTopbar-h;font-weight:bold;@include rel;}
+.userTitle{font-size:1.8rem;}
+.emailTxt{font-size:1.4rem;}
+.notedateTxt{font-size:1.7rem;}
+.pagecaptit{font-size:1.7rem;line-height:$txt-ln-h;}
+.pagecaptxt{font-size:1.3rem;line-height:$txt-ln-h;}
+.pagecaptime{font-size:1.4rem;line-height:$txt-ln-h;}
+.bookNametit{line-height:$txt-ln-h;font-size:2rem;line-height:$txt-ln-h;}
+.bookInfotxt{font-size:1.3rem;line-height:$txt-ln-h;}
+.bookusetxt{font-size:1.3rem;line-height:$txt-ln-h;}
+.subjcTitle{font-size:2.2rem;font-weight:bold;}
+.subjcLinkTitle{font-size:1.4rem;}
+.tabmenuTxt{font-size:1.6rem;font-weight:bold;}
+.olngnbTitle{font-size:1.6rem;line-height:$txt-ln-h;}
+.olngnbTxt{font-size:1.1rem;line-height:$txt-ln-h;color:$tcol-f3;}
+.serviceTitle{font-size:1.3rem;text-align:center;line-height:$txt-ln-h;}
+.infotoptxt{font-size:1.3rem;line-height:$txt-ln-h;}
+.subrtxt{font-size:1.3rem;line-height:$txt-ln-h;}
+.btmPtxt{font-size:1.2rem;color:$tcol-f3;text-align:center;}
+.papermtit{font-size:2rem;line-height:$txt-ln-h;}
+.paperstxt{font-size:1.5rem;line-height:$txt-ln-h;}
+.papercntit{font-size:1.6rem;line-height:$txt-ln-h;}
+.papersmltit{font-size:1.3rem;}
+.paperibtntit{font-size:1.6rem;line-height:$txt-ln-h;}
+.paperibtntxt{font-size:1.1rem;line-height:$txt-ln-h;}
+.loadpercntxt{font-size:1.3rem;color:#fff;letter-spacing:0;}
+.loadsupportxt{font-size:1.5rem;color:#fff;line-height:($txt-ln-h)+0.1;}
+.formtoptit{font-size:1.3rem;line-height:$txt-ln-h;}
+.rectimetxt{font-size:1.3rem;line-height:$txt-ln-h;}
+
+$breakpoint-mobile:540px;
+$breakpoint-tablet:768px;
+$breakpoint-desktop:1024px;
+@mixin mobile {
+    @media (min-width:#{$breakpoint-mobile}) and (max-width:#{$breakpoint-tablet}) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media (min-width:#{$breakpoint-tablet}) and (max-width:#{$breakpoint-desktop}) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (min-width:#{$breakpoint-desktop}) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media (max-width:#{$breakpoint-tablet}) {
+        @content;
+    }
+}
+@include tablet {
+    .smlviewtab{
+        & .notepageCap{display:none;}
+        & .pageRecmark{display:none;}
+        & .notepageScr{
+            & button{display: none;}}}
+}
+@mixin mobile {
+    @media (max-width:#{$breakpoint-mobile}) {
+        @content;
+    }
+}
+@include mobile {
+    .medviewtab{
+        & .notepageCap{display:none;}
+    }
+}
+.promotionArea{@include rel;overflow:hidden;margin:0 auto;text-align:center;max-width:1180px;
+    & .slidewrap{@include rel;margin:0 auto;text-align:center;max-width:1100px;
+        & .banArea{@include rel;max-width:550px;
+            & .imgwrap{@include rel;margin:0 auto;max-width:540px;
+                & img{width:100%;display:block;}}}}
+}
+$mystudio-slick:1199px;
+@mixin slick-myban {
+    @media (max-width:#{$mystudio-slick}) {
+        @content;
+    }
+}
+@include slick-myban {
+    .promotionArea{max-width:550px;
+        & .slidewrap{max-width:550px;}}
+}
