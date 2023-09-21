@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { scaleTime } from 'd3-scale';
-import { Slider, Rail, Handles, Tracks, Ticks } from 'react-compound-slider';
+import React, { useState } from "react";
+import { scaleTime } from "d3-scale";
+import { Slider, Rail, Handles, Tracks, Ticks } from "react-compound-slider";
 import {
   format,
   addHours,
@@ -8,15 +8,15 @@ import {
   endOfToday,
   differenceInMilliseconds,
   addMinutes,
-} from 'date-fns';
+} from "date-fns";
 
-import SliderRail from './SliderRail';
-import Track from './Track';
-import Tick from './Tick';
-import Handle from './Handle';
-import RandomTimeMarker from './RandomTimeMarker';
-import { TimeRangeContainer } from './StyledComponents';
-import { UpdateCallbackData } from './types';
+import SliderRail from "./SliderRail";
+import Track from "./Track";
+import Tick from "./Tick";
+import Handle from "./Handle";
+import RandomTimeMarker from "./RandomTimeMarker";
+import { TimeRangeContainer } from "./StyledComponents";
+import { UpdateCallbackData } from "./types";
 
 interface TimeRangeProps {
   ticksNumber?: number /* 타임라인의 단계 수(기본값은 30분) */;
@@ -27,7 +27,7 @@ interface TimeRangeProps {
   sliderRailClassName?: string;
   step?: number /* 단계 사이의 밀리초 수(기본값은 30분) */;
   formatTick?: (
-    ms: number,
+    ms: number
   ) => string /* 날짜가 표시되는 형식을 결정하는 함수 */;
   onChangeCallback?: (formattedNewTime: [Date]) => void;
   onUpdateCallback?: (data: UpdateCallbackData) => void;
@@ -37,12 +37,12 @@ interface TimeRangeProps {
 const defaultProps: TimeRangeProps = {
   /* timelineInterval: [startOfToday(), endOfToday()], */
   /* selectedInterval: [new Date()], */
-  containerClassName: '',
+  containerClassName: "",
   step: 1800000, // 30 minutes in milliseconds
   ticksNumber: 48, // 30 minutes * 48 = 24 hours
-  formatTick: (ms: number) => format(new Date(ms), 'HH:mm'),
-  onChangeCallback: () => 'Change callback not set',
-  onUpdateCallback: () => 'Update callback not set',
+  formatTick: (ms: number) => format(new Date(ms), "HH:mm"),
+  onChangeCallback: () => "Change callback not set",
+  onUpdateCallback: () => "Update callback not set",
 };
 
 const getTimelineConfig =
@@ -50,7 +50,7 @@ const getTimelineConfig =
   (date: Date, idPrefix: string) => {
     const percent =
       (differenceInMilliseconds(date, timelineStart) / timelineLength) * 100;
-    const value = Number(format(date, 'T'));
+    const value = Number(format(date, "T"));
     const id = `${idPrefix}-${value}`;
     return { id, percent, value };
   };
@@ -58,14 +58,14 @@ const getTimelineConfig =
 const getNowConfig = ([startTime, endTime]: Date[]) => {
   const timelineLength = differenceInMilliseconds(endTime, startTime);
   const getConfig = getTimelineConfig(startTime, timelineLength);
-  const source = getConfig(new Date(), 'now-start');
-  const target = getConfig(addMinutes(new Date(), 1), 'now-end');
-  return { id: 'now-track', source, target };
+  const source = getConfig(new Date(), "now-start");
+  const target = getConfig(addMinutes(new Date(), 1), "now-end");
+  return { id: "now-track", source, target };
 };
 
 function TimeRange(props: TimeRangeProps) {
   const [nowConfig, setNowConfig] = useState(
-    getNowConfig(props.timelineInterval ?? [startOfToday(), endOfToday()]),
+    getNowConfig(props.timelineInterval ?? [startOfToday(), endOfToday()])
   );
 
   const onChange = (newTime: ReadonlyArray<number>) => {
@@ -104,14 +104,14 @@ function TimeRange(props: TimeRangeProps) {
       <Slider
         step={props.step}
         domain={(props.timelineInterval ?? [startOfToday(), endOfToday()]).map(
-          (t) => +t,
+          (t) => +t
         )}
         onUpdate={onUpdate}
         onChange={onChange}
         values={(
           props.selectedInterval ?? [new Date(), addHours(new Date(), 1)]
         ).map((t) => +t)}
-        rootStyle={{ position: 'relative', width: '100%', height: '5rem' }}
+        rootStyle={{ position: "relative", width: "100%", height: "5rem" }}
       >
         <Rail>
           {({ getRailProps }) => <SliderRail getRailProps={getRailProps} />}
@@ -150,7 +150,7 @@ function TimeRange(props: TimeRangeProps) {
           props.randomTimes.map((randomTime) => {
             const timelineLength = differenceInMilliseconds(
               timelineInterval[1],
-              timelineInterval[0],
+              timelineInterval[0]
             );
             const randomTimePosition =
               (differenceInMilliseconds(randomTime, timelineInterval[0]) /
@@ -191,7 +191,7 @@ function TimeRange(props: TimeRangeProps) {
                   count={ticks.length}
                   format={
                     props.formatTick ??
-                    ((ms: number) => format(new Date(ms), 'HH:mm'))
+                    ((ms: number) => format(new Date(ms), "HH:mm"))
                   }
                 />
               ))}

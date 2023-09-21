@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface RandomTimeMarkerProps {
   time: Date;
@@ -11,15 +11,15 @@ const RandomTimeMarker: React.FC<RandomTimeMarkerProps> = ({
 }) => (
   <div
     style={{
-      position: 'absolute',
+      position: "absolute",
       left: `${position}%`,
-      transform: 'translateX(-50%)',
+      transform: "translateX(-50%)",
       zIndex: 3,
-      textIndent: '-9999px',
-      background: '#B2D7DA',
-      width: '2px',
-      height: '5rem',
-      cursor: 'pointer',
+      textIndent: "-9999px",
+      background: "#B2D7DA",
+      width: "2px",
+      height: "5rem",
+      cursor: "pointer",
     }}
   >
     {time.toLocaleTimeString()}
