@@ -38,7 +38,7 @@ const defaultProps: TimeRangeProps = {
   /* timelineInterval: [startOfToday(), endOfToday()], */
   /* selectedInterval: [new Date()], */
   containerClassName: "",
-  step: 1800000, // 30 minutes in milliseconds
+  step: 60000, // 30 minutes in milliseconds
   ticksNumber: 48, // 30 minutes * 48 = 24 hours
   formatTick: (ms: number) => format(new Date(ms), "HH:mm"),
   onChangeCallback: () => "Change callback not set",
@@ -64,6 +64,26 @@ const getNowConfig = ([startTime, endTime]: Date[]) => {
 };
 
 function TimeRange(props: TimeRangeProps) {
+  const minRandomTimeGap = (() => {
+    if (!props.randomTimes || props.randomTimes.length < 2) {
+      return 60000; // 기본값: 1분 (60,000 밀리초)
+    }
+    let minGap = differenceInMilliseconds(
+      props.randomTimes[0],
+      props.randomTimes[1]
+    );
+    for (let i = 1; i < props.randomTimes.length - 1; i++) {
+      const gap = differenceInMilliseconds(
+        props.randomTimes[i + 1],
+        props.randomTimes[i]
+      );
+      if (gap < minGap) {
+        minGap = gap;
+      }
+    }
+    return minGap;
+  })();
+
   const [nowConfig, setNowConfig] = useState(
     getNowConfig(props.timelineInterval ?? [startOfToday(), endOfToday()])
   );
@@ -102,7 +122,7 @@ function TimeRange(props: TimeRangeProps) {
   return (
     <TimeRangeContainer className={props.containerClassName}>
       <Slider
-        step={props.step}
+        step={minRandomTimeGap}
         domain={(props.timelineInterval ?? [startOfToday(), endOfToday()]).map(
           (t) => +t
         )}
