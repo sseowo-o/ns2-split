@@ -73,6 +73,9 @@ function TimeRange(props: TimeRangeProps) {
       18 * 60 * 60 * 1000,
     ];
 
+    // 최소 간격을 찾아 반환
+    const minGap = Math.min(...fixedTimes);
+
     return minGap;
   })();
 
@@ -193,7 +196,8 @@ function TimeRange(props: TimeRangeProps) {
             );
           })}
 
-        <Ticks values={getDateTicks()}>
+        {/* 스플릿 range 확대시 시간 보이기 */}
+        {/* <Ticks values={getDateTicks()}>
           {({ ticks }) => (
             <>
               {ticks.map((tick) => (
@@ -209,7 +213,7 @@ function TimeRange(props: TimeRangeProps) {
               ))}
             </>
           )}
-        </Ticks>
+        </Ticks> */}
       </Slider>
     </TimeRangeContainer>
   );

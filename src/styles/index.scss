@@ -14,7 +14,8 @@
     input, select, textarea {margin:0;padding:0;vertical-align:middle;box-shadow:none;}
     fieldset, img {border:0;outline:0;}
     html, h1, h2, h3, h4, h5, h6, p, em, font, small, strong{@include font-family;font-weight:normal;font-style:normal;font-size:10px;letter-spacing:-0.02em;-webkit-text-size-adjust:none;text-size-adjust:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-    body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale; min-height: 100vh;margin: 0 auto;}
+    html{width: 100vw; overflow: hidden;}
+    body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale; max-height: 100vh;margin: 0 auto;}
     code{font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;}
     input,select,textarea,option{letter-spacing:0;}
     input,select,textarea,option,button,a{-webkit-tap-highlight-color:transparent;outline:0;-webkit-tap-highlight-color:rgba(0,0,0,0);}

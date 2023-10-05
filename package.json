@@ -30,6 +30,7 @@
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
+    "d3": "^7.8.5",
     "data-fns": "^1.1.0",
     "encrypt-storage": "^2.12.16",
     "file-loader": "^6.2.0",

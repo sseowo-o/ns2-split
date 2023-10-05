@@ -1,10 +1,8 @@
-import styled from '@emotion/styled';
-import type { StyledTrackProps } from './types';
+import styled from "@emotion/styled";
+import type { StyledTrackProps } from "./types";
 
 export const TimeRangeContainer = styled.div`
   position: relative;
-  padding: 16px;
-  height: 12rem;
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
@@ -76,15 +74,15 @@ export const StyledHandleMarker = styled.div<{ error: boolean }>`
   margin: auto;
   border-radius: 2px;
   background-color: ${({ error }) =>
-    error ? 'rgb(214, 0, 11)' : 'rgb(98, 203, 102)'};
+    error ? "rgb(214, 0, 11)" : "rgb(98, 203, 102)"};
   transition: background-color 0.2s ease;
 `;
 
 export const TickMarker = styled.div<{ isFullHour: boolean }>`
   position: absolute;
-  margin-top: ${({ isFullHour }) => (isFullHour ? '4em' : '4.5em')};
+  margin-top: ${({ isFullHour }) => (isFullHour ? "4em" : "4.5em")};
   width: 1px;
-  height: ${({ isFullHour }) => (isFullHour ? '1em' : '0.5em')};
+  height: ${({ isFullHour }) => (isFullHour ? "1em" : "0.5em")};
   background-color: #c8cacc;
   z-index: 2;
 `;
