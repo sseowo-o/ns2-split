@@ -64,23 +64,15 @@ const getNowConfig = ([startTime, endTime]: Date[]) => {
 };
 
 function TimeRange(props: TimeRangeProps) {
+  // minRandomTimeGap을 고정된 값으로 설정
   const minRandomTimeGap = (() => {
-    if (!props.randomTimes || props.randomTimes.length < 2) {
-      return 60000; // 기본값: 1분 (60,000 밀리초)
-    }
-    let minGap = differenceInMilliseconds(
-      props.randomTimes[0],
-      props.randomTimes[1]
-    );
-    for (let i = 1; i < props.randomTimes.length - 1; i++) {
-      const gap = differenceInMilliseconds(
-        props.randomTimes[i + 1],
-        props.randomTimes[i]
-      );
-      if (gap < minGap) {
-        minGap = gap;
-      }
-    }
+    // 고정된 시간 값들
+    const fixedTimes = [
+      3 * 60 * 60 * 1000,
+      8 * 60 * 60 * 1000,
+      18 * 60 * 60 * 1000,
+    ];
+
     return minGap;
   })();
 
