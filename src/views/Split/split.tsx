@@ -6,10 +6,12 @@ import { SplitRange, SplitDate } from "./SplitStyle";
 import Modal from "../../components/Modal/Modal";
 import SeperateWriting from "../../components/Modal/SeperateWriting";
 import ModalButton from "../../components/Modal/ModalButton";
+import Snackbar from "../../components/SnackBar/SnackBar";
 
 const Split = () => {
   const [currentInterval, setCurrentInterval] = useState(selectedInterval);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
 
   const onChangeCallback = (formattedNewTime: [Date]) => {
     setCurrentInterval(formattedNewTime);
@@ -25,6 +27,15 @@ const Split = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleConfirm = () => {
+    setIsModalOpen(false);
+    setIsSnackbarOpen(true); // 스낵바를 열도록 상태 업데이트
+  };
+
+  const handleCloseSnackbar = () => {
+    setIsSnackbarOpen(false);
   };
 
   useEffect(() => {
@@ -101,8 +112,16 @@ const Split = () => {
       {/* 모달 컴포넌트 */}
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <SeperateWriting />
-        <ModalButton onCancel={handleCloseModal} onConfirm={handleCloseModal} />
+        <ModalButton onCancel={handleCloseModal} onConfirm={handleConfirm} />
       </Modal>
+
+      {/* 스낵바 */}
+      {isSnackbarOpen && (
+        <Snackbar
+          message="2023 Planner Basic 003으로 분리되었습니다."
+          onClose={handleCloseSnackbar}
+        />
+      )}
     </>
   );
 };
