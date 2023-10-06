@@ -1,5 +1,5 @@
 import React from "react";
-import { format } from "date-fns"; // date-fns에서 format 함수 import
+import { format } from "date-fns";
 
 import {
   StyledHandleContainer,
@@ -15,6 +15,10 @@ interface HandleProps {
     percent: number;
   };
   getHandleProps: (id: string) => any;
+}
+
+export interface HandleLabelProps {
+  rightEdgeReached: boolean; // rightEdgeReached prop 추가
 }
 
 const Handle: React.FC<HandleProps> = ({
@@ -39,10 +43,9 @@ const Handle: React.FC<HandleProps> = ({
         aria-valuenow={value}
         style={{ left: leftPosition }}
       >
-        <StyledHandleLabel>
+        <StyledHandleLabel rightEdgeReached={isRightEdgeReached}>
           {format(new Date(value), "yyyy-MM-dd HH:mm")}
         </StyledHandleLabel>{" "}
-        {/* 시간을 함께 보이도록 추가 */}
       </StyledHandleContainer>
     </>
   );

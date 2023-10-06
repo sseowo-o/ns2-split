@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import type { StyledTrackProps } from "./types";
+import type { HandleLabelProps } from "./Handle";
 
 export const TimeRangeContainer = styled.div`
   position: relative;
@@ -77,7 +78,7 @@ export const StyledHandleMarker = styled.div<{ error: boolean }>`
   transition: background-color 0.2s ease;
 `;
 
-export const StyledHandleLabel = styled.div`
+export const StyledHandleLabel = styled.div<HandleLabelProps>`
   background: #00838f;
   position: absolute;
   width: 115px;
