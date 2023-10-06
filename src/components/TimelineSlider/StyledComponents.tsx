@@ -5,7 +5,6 @@ export const TimeRangeContainer = styled.div`
   position: relative;
   width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
   padding: 0 8px;
 `;
 
@@ -78,21 +77,16 @@ export const StyledHandleMarker = styled.div<{ error: boolean }>`
   transition: background-color 0.2s ease;
 `;
 
-export const TickMarker = styled.div<{ isFullHour: boolean }>`
+export const StyledHandleLabel = styled.div`
+  background: #00838f;
   position: absolute;
-  margin-top: ${({ isFullHour }) => (isFullHour ? "4em" : "4.5em")};
-  width: 1px;
-  height: ${({ isFullHour }) => (isFullHour ? "1em" : "0.5em")};
-  background-color: #c8cacc;
-  z-index: 2;
-`;
-
-export const TickLabel = styled.div`
-  position: absolute;
-  margin-top: 6rem;
-  font-size: 0.8em;
+  width: 115px;
+  top: -40px;
+  font-size: 12px;
+  padding: 4px;
+  border-radius: 4px;
+  color: #fff;
+  box-sizing: border-box;
   text-align: center;
-  z-index: 2;
-  color: #77828c;
-  font-family: sans-serif;
+  left: -50px;
 `;

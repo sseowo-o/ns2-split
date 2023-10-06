@@ -11,15 +11,16 @@ export const SplitRange = styled.div`
 
 export const SplitDate = styled.div`
   font-family: Noto Sans KR;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 22px;
   margin-top: 8px;
-  color: #757575;
+  font-size: 12px;
 `;
 
 export const NoteDate = styled.div`
   display: flex;
   justify-content: space-between;
+  & span {
+    font-size: 14px;
+    color: #757575;
+    margin-top: 8px;
+  }
 `;

@@ -110,7 +110,7 @@ const Split = () => {
               onChangeCallback={onChangeCallback}
               randomTimes={randomTimes}
             />
-            <SplitDate>{formattedDates}</SplitDate>
+            {/* <SplitDate>{formattedDates}</SplitDate> */}
           </div>
           <NoteDate>
             <span>2023-07-28 03:00</span>

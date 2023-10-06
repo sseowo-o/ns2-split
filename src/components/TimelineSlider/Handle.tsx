@@ -1,6 +1,11 @@
-import React from 'react';
+import React from "react";
+import { format } from "date-fns"; // date-fns에서 format 함수 import
 
-import { StyledHandleContainer, StyledHandleWrapper } from './StyledComponents';
+import {
+  StyledHandleContainer,
+  StyledHandleWrapper,
+  StyledHandleLabel,
+} from "./StyledComponents";
 
 interface HandleProps {
   domain: number[];
@@ -31,7 +36,12 @@ const Handle: React.FC<HandleProps> = ({
         aria-valuemax={max}
         aria-valuenow={value}
         style={{ left: leftPosition }}
-      />
+      >
+        <StyledHandleLabel>
+          {format(new Date(value), "yyyy-MM-dd HH:mm")}
+        </StyledHandleLabel>{" "}
+        {/* 시간을 함께 보이도록 추가 */}
+      </StyledHandleContainer>
     </>
   );
 };

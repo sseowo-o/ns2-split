@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { scaleTime } from "d3-scale";
-import { Slider, Rail, Handles, Tracks, Ticks } from "react-compound-slider";
+import { Slider, Rail, Handles, Tracks } from "react-compound-slider";
 import {
   format,
   addHours,
@@ -12,7 +12,6 @@ import {
 
 import SliderRail from "./SliderRail";
 import Track from "./Track";
-import Tick from "./Tick";
 import Handle from "./Handle";
 import RandomTimeMarker from "./RandomTimeMarker";
 import { TimeRangeContainer } from "./StyledComponents";
@@ -84,14 +83,6 @@ function TimeRange(props: TimeRangeProps) {
 
     const formattedNewTime = newTime.map((t) => new Date(t));
     onUpdateCallback({ error: false, time: formattedNewTime });
-  };
-
-  const getDateTicks = () => {
-    const { timelineInterval, ticksNumber } = props;
-    return scaleTime()
-      .domain(timelineInterval ?? [startOfToday(), endOfToday()])
-      .ticks(ticksNumber)
-      .map((t) => +t);
   };
 
   const timelineInterval = props.timelineInterval || [
@@ -179,25 +170,6 @@ function TimeRange(props: TimeRangeProps) {
               </div>
             );
           })}
-
-        {/* 스플릿 range 확대시 시간 보이기 */}
-        {/* <Ticks values={getDateTicks()}>
-          {({ ticks }) => (
-            <>
-              {ticks.map((tick) => (
-                <Tick
-                  key={tick.id}
-                  tick={tick}
-                  count={ticks.length}
-                  format={
-                    props.formatTick ??
-                    ((ms: number) => format(new Date(ms), "HH:mm"))
-                  }
-                />
-              ))}
-            </>
-          )}
-        </Ticks> */}
       </Slider>
     </TimeRangeContainer>
   );
