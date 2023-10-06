@@ -6,7 +6,7 @@ export const TimeRangeContainer = styled.div`
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
-  overflow-x: scroll;
+  padding: 0 8px;
 `;
 
 export const StyledTrack = styled.div<StyledTrackProps>`
