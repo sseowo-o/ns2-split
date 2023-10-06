@@ -24,6 +24,8 @@ const Handle: React.FC<HandleProps> = ({
 }) => {
   const leftPosition = `${percent}%`;
 
+  const isRightEdgeReached = percent === 100;
+
   return (
     <>
       <StyledHandleWrapper

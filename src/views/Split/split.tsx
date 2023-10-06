@@ -6,7 +6,7 @@ import { ReactComponent as Backward } from "../../assets/icon/SF_backward.svg";
 
 import TimeRange from "../../components/TimelineSlider/App";
 import { randomTimes, selectedInterval, timelineInterval } from "./datesSource";
-import { SplitRange, SplitDate, NoteDate } from "./SplitStyle";
+import { SplitRange, NoteDate } from "./SplitStyle";
 import Modal from "../../components/Modal/Modal";
 import SeperateWriting from "../../components/Modal/SeperateWriting";
 import ModalButton from "../../components/Modal/ModalButton";
@@ -16,6 +16,7 @@ const Split = () => {
   const [currentInterval, setCurrentInterval] = useState(selectedInterval);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const onChangeCallback = (formattedNewTime: [Date]) => {
     setCurrentInterval(formattedNewTime);
@@ -50,6 +51,12 @@ const Split = () => {
       document.body.style.overflow = "auto";
       document.body.style.background = "initial";
     }
+
+    // 화면 크기에 따라 screenWidth 상태 업데이트
+    window.addEventListener("resize", () => {
+      setScreenWidth(window.innerWidth);
+    });
+
     return () => {
       document.body.style.overflow = "auto";
       document.body.style.background = "initial";
@@ -110,12 +117,26 @@ const Split = () => {
               onChangeCallback={onChangeCallback}
               randomTimes={randomTimes}
             />
-            {/* <SplitDate>{formattedDates}</SplitDate> */}
+            {/* 화면 크기에 따라 다른 내용을 표시 */}
+            <NoteDate>
+              {screenWidth >= 1024 ? (
+                <>
+                  <span>28th-April-2023 (Wed) 03:00</span>
+                  <span>28th-April-2023 (Wed) 03:00</span>
+                </>
+              ) : screenWidth >= 768 ? (
+                <>
+                  <span>2023-10-06 03:00</span>
+                  <span>2023-10-06 03:00</span>
+                </>
+              ) : (
+                <>
+                  <span>2023-10-06</span>
+                  <span>2023-10-06</span>
+                </>
+              )}
+            </NoteDate>
           </div>
-          <NoteDate>
-            <span>2023-07-28 03:00</span>
-            <span>2023-10-06 03:00</span>
-          </NoteDate>
         </SplitRange>
       </div>
 
