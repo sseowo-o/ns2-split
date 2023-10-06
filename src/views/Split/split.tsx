@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { format } from "date-fns";
+
+import { ReactComponent as UpNote } from "../../assets/icon/SF_up_note.svg";
+import { ReactComponent as Backward } from "../../assets/icon/SF_backward.svg";
+
 import TimeRange from "../../components/TimelineSlider/App";
 import { randomTimes, selectedInterval, timelineInterval } from "./datesSource";
 import { SplitRange, SplitDate } from "./SplitStyle";
@@ -65,7 +69,9 @@ const Split = () => {
             gap: "11px",
           }}
         >
-          <span style={{ width: "44px" }}></span>
+          <span style={{ width: "44px" }}>
+            <Backward />
+          </span>
           <span
             style={{
               fontSize: "22px",
@@ -81,7 +87,7 @@ const Split = () => {
             style={{ width: "44px", padding: "0" }}
             onClick={handleOpenModal}
           >
-            분리
+            <UpNote />
           </button>
         </header>
         <div
