@@ -2,6 +2,8 @@ import React from "react";
 import ToggleSwitch from "../../components/Icon/ToggleSwitch";
 import styled from "styled-components";
 
+import { ReactComponent as Book } from "../../assets/cover/book.svg";
+
 const SeperateWritingStyle = styled.div`
   display: flex;
   flex-direction: column;
@@ -18,6 +20,9 @@ const SeperateWritingStyle = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
+      gap: 4px;
+      color: #757575;
+      font-size: 11px;
       & .book {
         width: 123px;
         height: 185px;
@@ -60,12 +65,16 @@ const SeperateWriting = () => {
       </h2>
       <div className="bookImgWrap">
         <div className="bookImg">
-          <span className="book"></span>
+          <span className="book">
+            <Book />
+          </span>
           <span>2023 Planner Pro</span>
         </div>
         <span style={{ fontSize: "30px" }}>&raquo; </span>
         <div className="bookImg">
-          <span className="book"></span>
+          <span className="book">
+            <Book />
+          </span>
           <span>2023 Planner Pro_001</span>
         </div>
       </div>

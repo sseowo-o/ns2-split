@@ -18,3 +18,8 @@ export const SplitDate = styled.div`
   margin-top: 8px;
   color: #757575;
 `;
+
+export const NoteDate = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;

@@ -6,7 +6,7 @@ import { ReactComponent as Backward } from "../../assets/icon/SF_backward.svg";
 
 import TimeRange from "../../components/TimelineSlider/App";
 import { randomTimes, selectedInterval, timelineInterval } from "./datesSource";
-import { SplitRange, SplitDate } from "./SplitStyle";
+import { SplitRange, SplitDate, NoteDate } from "./SplitStyle";
 import Modal from "../../components/Modal/Modal";
 import SeperateWriting from "../../components/Modal/SeperateWriting";
 import ModalButton from "../../components/Modal/ModalButton";
@@ -112,6 +112,10 @@ const Split = () => {
             />
             <SplitDate>{formattedDates}</SplitDate>
           </div>
+          <NoteDate>
+            <span>2023-07-28 03:00</span>
+            <span>2023-10-06 03:00</span>
+          </NoteDate>
         </SplitRange>
       </div>
 
