@@ -7,14 +7,25 @@ import { ReactComponent as Backward } from "../../assets/icon/SF_backward.svg";
 import TimeRange from "../../components/TimelineSlider/App";
 import { randomTimes, selectedInterval, timelineInterval } from "./datesSource";
 import { SplitRange, NoteDate } from "./SplitStyle";
+
 import Modal from "../../components/Modal/Modal";
 import SeperateWriting from "../../components/Modal/SeperateWriting";
+
+// * 새로 추가된 코드 S
+import NewModal from "../../components/Modal/NewModal";
+// * 새로 추가된 코드 E
+
 import ModalButton from "../../components/Modal/ModalButton";
 import Snackbar from "../../components/SnackBar/SnackBar";
 
 const Split = () => {
   const [currentInterval, setCurrentInterval] = useState(selectedInterval);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // * 새로 추가된 코드 S
+  const [isNewModalOpen, setIsNewModalOpen] = useState(false);
+  // * 새로 추가된 코드 E
+
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
@@ -22,23 +33,29 @@ const Split = () => {
     setCurrentInterval(formattedNewTime);
   };
 
-  const formattedDates = currentInterval.map((date, i) => (
-    <span key={date.getTime()}>{format(date, "yyyy-MM-dd HH:mm")}</span>
-  ));
-
+  /* 일반 필기분리 팝업 */
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
-
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
 
+  // * 새로 추가된 코드 S
+  /* 히스토리 필기분리 팝업 ex)전에 옮긴 노트에 마저 옮길래? */
+  const handleOpenNewModal = () => {
+    setIsNewModalOpen(true);
+  };
+  const handleCloseNewModal = () => {
+    setIsNewModalOpen(false);
+  };
+  // * 새로 추가된 코드 E
+
+  /* 스낵바 */
   const handleConfirm = () => {
     setIsModalOpen(false);
     setIsSnackbarOpen(true); // 스낵바를 열도록 상태 업데이트
   };
-
   const handleCloseSnackbar = () => {
     setIsSnackbarOpen(false);
   };
@@ -95,7 +112,18 @@ const Split = () => {
             onClick={handleOpenModal}
           >
             <UpNote />
+            일반 분리 모달
           </button>
+
+          {/* 새로 추가된 코드 S */}
+          <button
+            style={{ width: "44px", padding: "0" }}
+            onClick={handleOpenNewModal}
+          >
+            <UpNote />
+            히스토리 분리 모달
+          </button>
+          {/* 새로 추가된 코드 E */}
         </header>
         <div
           style={{
@@ -140,11 +168,19 @@ const Split = () => {
         </SplitRange>
       </div>
 
-      {/* 모달 컴포넌트 */}
+      {/* 일반 필기분리 모달 */}
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <SeperateWriting />
         <ModalButton onCancel={handleCloseModal} onConfirm={handleConfirm} />
       </Modal>
+
+      {/* 새로 추가된 코드 S */}
+      {/* 히스토리 필기분리 팝업 ex)전에 옮긴 노트에 마저 옮길래? */}
+      <Modal isOpen={isNewModalOpen} onClose={handleCloseNewModal}>
+        <NewModal />
+        <ModalButton onCancel={handleCloseNewModal} onConfirm={handleConfirm} />
+      </Modal>
+      {/* 새로 추가된 코드 E */}
 
       {/* 스낵바 */}
       {isSnackbarOpen && (
