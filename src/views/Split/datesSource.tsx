@@ -18,3 +18,9 @@ export const timelineInterval: [Date, Date] = [
   getTodayAtSpecificHour(0),
   getTodayAtSpecificHour(24),
 ];
+
+export const writingRangeIntervals = [
+  { start: getTodayAtSpecificHour(3), end: getTodayAtSpecificHour(5) },
+  { start: getTodayAtSpecificHour(8), end: getTodayAtSpecificHour(12) },
+  { start: getTodayAtSpecificHour(18), end: getTodayAtSpecificHour(22) },
+];

@@ -5,7 +5,12 @@ import { ReactComponent as UpNote } from "../../assets/icon/SF_up_note.svg";
 import { ReactComponent as Backward } from "../../assets/icon/SF_backward.svg";
 
 import TimeRange from "../../components/TimelineSlider/App";
-import { randomTimes, selectedInterval, timelineInterval } from "./datesSource";
+import {
+  randomTimes,
+  selectedInterval,
+  timelineInterval,
+  writingRangeIntervals,
+} from "./datesSource";
 import { SplitRange, NoteDate } from "./SplitStyle";
 
 import Modal from "../../components/Modal/Modal";
@@ -144,6 +149,7 @@ const Split = () => {
               timelineInterval={timelineInterval}
               onChangeCallback={onChangeCallback}
               randomTimes={randomTimes}
+              writingRangeIntervals={writingRangeIntervals}
             />
             {/* 화면 크기에 따라 다른 내용을 표시 */}
             <NoteDate>

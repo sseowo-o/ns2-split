@@ -1,13 +1,12 @@
 export type StyledTrackProps = {
   error: boolean;
-  disabled: boolean;
+  writingRange: boolean;
   sourcePercent: number;
   targetPercent: number;
   color: string;
 };
 
-export type DisabledInterval = {
-  id: string;
+export type writingRangeInterval = {
   start: Date;
   end: Date;
   color?: string;

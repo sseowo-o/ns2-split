@@ -1,8 +1,8 @@
 /* 슬라이드 조절하는 부분 */
 
-import React from 'react';
+import React from "react";
 
-import { StyledTrack } from './StyledComponents';
+import { StyledTrack } from "./StyledComponents";
 
 type TrackProps = {
   source: {
@@ -15,16 +15,20 @@ type TrackProps = {
     value: number;
     percent: number;
   };
+  writingRange?: boolean;
   getTrackProps: () => any;
 };
 
-const Track: React.FC<TrackProps> = ({ source, target, getTrackProps }) => (
+const Track: React.FC<TrackProps> = ({
+  source,
+  target,
+  writingRange,
+  getTrackProps,
+}) => (
   <StyledTrack
     sourcePercent={source.percent}
     targetPercent={target.percent}
-    error={false}
-    disabled={false}
-    color={''}
+    writingRange={writingRange}
     {...getTrackProps()}
   />
 );

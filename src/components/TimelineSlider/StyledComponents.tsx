@@ -22,8 +22,17 @@ export const StyledTrack = styled.div<StyledTrackProps>`
   width: ${({ sourcePercent, targetPercent }) =>
     `calc(${targetPercent - sourcePercent}%)`};
 
-  background-color: #00838f;
-  border: 1px solid #00838f;
+  ${({ writingRange }) =>
+    writingRange
+      ? `
+    border: 1px solid #C8CACC;
+    background: repeating-linear-gradient( -45deg, transparent, transparent 3px, #D0D3D7 4px, #D0D3D7 2px);
+    opacity: .8
+	  `
+      : `
+    background-color: #00838f;
+    border: 1px solid #00838f;
+  `}
 `;
 
 /** Slider used for input */

@@ -1,6 +1,6 @@
-import React from 'react';
-import { SerializedStyles } from '@emotion/react';
-import styled from '@emotion/styled';
+import React from "react";
+import { SerializedStyles } from "@emotion/react";
+import styled from "@emotion/styled";
 
 interface KeyboardHandleProps {
   domain: [number, number];
@@ -10,7 +10,7 @@ interface KeyboardHandleProps {
     percent: number;
   };
   getHandleProps: (id: string) => any;
-  disabled?: boolean;
+  writingRange?: boolean;
 }
 
 interface StyledKeyboardHandleProps {
@@ -35,7 +35,7 @@ const StyledKeyboardHandle = styled.button<StyledKeyboardHandleProps>`
 const KeyboardHandle: React.FC<KeyboardHandleProps> = ({
   domain: [min, max],
   handle: { id, value, percent = 0 },
-  disabled,
+  writingRange,
   getHandleProps,
 }) => (
   <StyledKeyboardHandle
@@ -44,12 +44,12 @@ const KeyboardHandle: React.FC<KeyboardHandleProps> = ({
     aria-valuemax={max}
     aria-valuenow={value}
     left={`${percent}%`}
-    backgroundColor={disabled ? '#666' : '#ffc400'}
+    backgroundColor={writingRange ? "#666" : "#ffc400"}
     css={null}
     {...getHandleProps(id)}
   />
 );
 
-KeyboardHandle.defaultProps = { disabled: false };
+KeyboardHandle.defaultProps = { writingRange: false };
 
 export default KeyboardHandle;
