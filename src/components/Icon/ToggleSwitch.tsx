@@ -60,7 +60,7 @@ const SwitchSlider = styled.span`
 `;
 
 const ToggleSwitch: React.FC = () => {
-  const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [isChecked, setIsChecked] = useState<boolean>(true);
 
   const handleToggle = () => {
     setIsChecked(!isChecked);

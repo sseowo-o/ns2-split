@@ -29,6 +29,7 @@ const Split = () => {
 
   // * 새로 추가된 코드 S
   const [isNewModalOpen, setIsNewModalOpen] = useState(false);
+  const [isModalOpenInner, setIsModalOpenInner] = useState(false);
   // * 새로 추가된 코드 E
 
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
@@ -46,7 +47,6 @@ const Split = () => {
     setIsModalOpen(false);
   };
 
-  // * 새로 추가된 코드 S
   /* 히스토리 필기분리 팝업 ex)전에 옮긴 노트에 마저 옮길래? */
   const handleOpenNewModal = () => {
     setIsNewModalOpen(true);
@@ -54,36 +54,26 @@ const Split = () => {
   const handleCloseNewModal = () => {
     setIsNewModalOpen(false);
   };
-  // * 새로 추가된 코드 E
+
+  /* 일반 필기분리 팝업 -> 추가 분리 팝업(2중) */
+  const handleModalOpenInner = () => {
+    setIsModalOpen(false);
+    setIsModalOpenInner(true);
+  };
+
+  const handleCloseInnerModal = () => {
+    setIsModalOpenInner(false);
+  };
 
   /* 스낵바 */
   const handleConfirm = () => {
     setIsModalOpen(false);
+    setIsModalOpenInner(false);
     setIsSnackbarOpen(true); // 스낵바를 열도록 상태 업데이트
   };
   const handleCloseSnackbar = () => {
     setIsSnackbarOpen(false);
   };
-
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = "hidden";
-      document.body.style.background = "rgba(0, 0, 0, 0.7)";
-    } else {
-      document.body.style.overflow = "auto";
-      document.body.style.background = "initial";
-    }
-
-    // 화면 크기에 따라 screenWidth 상태 업데이트
-    window.addEventListener("resize", () => {
-      setScreenWidth(window.innerWidth);
-    });
-
-    return () => {
-      document.body.style.overflow = "auto";
-      document.body.style.background = "initial";
-    };
-  }, [isModalOpen]);
 
   return (
     <>
@@ -175,18 +165,29 @@ const Split = () => {
       </div>
 
       {/* 일반 필기분리 모달 */}
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <SeperateWriting />
-        <ModalButton onCancel={handleCloseModal} onConfirm={handleConfirm} />
-      </Modal>
+      <div>
+        <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+          <SeperateWriting />
+          <ModalButton
+            onCancel={handleCloseModal}
+            onConfirm={handleModalOpenInner}
+          />
+        </Modal>
 
-      {/* 새로 추가된 코드 S */}
+        <Modal isOpen={isModalOpenInner} onClose={handleCloseInnerModal}>
+          <NewModal />
+          <ModalButton
+            onCancel={handleCloseInnerModal}
+            onConfirm={handleConfirm}
+          />
+        </Modal>
+      </div>
+
       {/* 히스토리 필기분리 팝업 ex)전에 옮긴 노트에 마저 옮길래? */}
       <Modal isOpen={isNewModalOpen} onClose={handleCloseNewModal}>
         <NewModal />
         <ModalButton onCancel={handleCloseNewModal} onConfirm={handleConfirm} />
       </Modal>
-      {/* 새로 추가된 코드 E */}
 
       {/* 스낵바 */}
       {isSnackbarOpen && (
