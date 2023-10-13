@@ -24,7 +24,7 @@ const Snackbar: React.FC<{ message: string; onClose: () => void }> = ({
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
-    }, 3000); // 3초 후에 자동으로 사라짐
+    }, 1000); // 3초 후에 자동으로 사라짐
 
     return () => {
       clearTimeout(timer);

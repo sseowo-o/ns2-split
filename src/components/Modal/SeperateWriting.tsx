@@ -81,14 +81,14 @@ const SeperateWriting = () => {
       <span className="line"></span>
       <div className="info">
         <div className="infoTit">
-          <h3>분리 후 새 노트북 활성화</h3>
+          <h3>분리 노트북 활성화</h3>
           <ToggleSwitch />
         </div>
 
         <div className="infoCont">
           해당 기능을 켜면 필기 분리를 할 때마다
           <br />
-          자동으로 새 노트북을 활성화합니다.
+          자동으로 분리한 노트북을 활성화합니다.
         </div>
       </div>
     </SeperateWritingStyle>

@@ -15,12 +15,12 @@ import { SplitRange, NoteDate } from "./SplitStyle";
 
 import Modal from "../../components/Modal/Modal";
 import SeperateWriting from "../../components/Modal/SeperateWriting";
+import PackSeperate from "../../components/Modal/PackSeperate";
+import HistorySeperate from "../../components/Modal/HistorySeperate";
 
-// * 새로 추가된 코드 S
-import NewModal from "../../components/Modal/NewModal";
-// * 새로 추가된 코드 E
-
-import ModalButton from "../../components/Modal/ModalButton";
+import ModalButtonHorizon from "../../components/Modal/ModalButtonHorizon";
+import ModalButtonVertical from "../../components/Modal/ModalButtonVertical";
+import ModalButtonVertical2 from "../../components/Modal/ModalButtonVertical2";
 import Snackbar from "../../components/SnackBar/SnackBar";
 
 const Split = () => {
@@ -168,15 +168,15 @@ const Split = () => {
       <div>
         <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
           <SeperateWriting />
-          <ModalButton
+          <ModalButtonHorizon
             onCancel={handleCloseModal}
             onConfirm={handleModalOpenInner}
           />
         </Modal>
 
         <Modal isOpen={isModalOpenInner} onClose={handleCloseInnerModal}>
-          <NewModal />
-          <ModalButton
+          <PackSeperate />
+          <ModalButtonVertical
             onCancel={handleCloseInnerModal}
             onConfirm={handleConfirm}
           />
@@ -185,8 +185,11 @@ const Split = () => {
 
       {/* 히스토리 필기분리 팝업 ex)전에 옮긴 노트에 마저 옮길래? */}
       <Modal isOpen={isNewModalOpen} onClose={handleCloseNewModal}>
-        <NewModal />
-        <ModalButton onCancel={handleCloseNewModal} onConfirm={handleConfirm} />
+        <HistorySeperate />
+        <ModalButtonVertical2
+          onCancel={handleCloseNewModal}
+          onConfirm={handleConfirm}
+        />
       </Modal>
 
       {/* 스낵바 */}
