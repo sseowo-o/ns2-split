@@ -20,17 +20,14 @@ import HistorySeperate from "../../components/Modal/HistorySeperate";
 
 import ModalButtonHorizon from "../../components/Modal/ModalButtonHorizon";
 import ModalButtonVertical from "../../components/Modal/ModalButtonVertical";
-import ModalButtonVertical2 from "../../components/Modal/ModalButtonVertical2";
 import Snackbar from "../../components/SnackBar/SnackBar";
 
 const Split = () => {
   const [currentInterval, setCurrentInterval] = useState(selectedInterval);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // * 새로 추가된 코드 S
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isNewModalOpen, setIsNewModalOpen] = useState(false);
   const [isModalOpenInner, setIsModalOpenInner] = useState(false);
-  // * 새로 추가된 코드 E
 
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -58,6 +55,7 @@ const Split = () => {
   /* 일반 필기분리 팝업 -> 추가 분리 팝업(2중) */
   const handleModalOpenInner = () => {
     setIsModalOpen(false);
+    setIsNewModalOpen(false);
     setIsModalOpenInner(true);
   };
 
@@ -110,7 +108,6 @@ const Split = () => {
             일반 분리 모달
           </button>
 
-          {/* 새로 추가된 코드 S */}
           <button
             style={{ width: "44px", padding: "0" }}
             onClick={handleOpenNewModal}
@@ -118,7 +115,6 @@ const Split = () => {
             <UpNote />
             히스토리 분리 모달
           </button>
-          {/* 새로 추가된 코드 E */}
         </header>
         <div
           style={{
@@ -173,21 +169,22 @@ const Split = () => {
             onConfirm={handleModalOpenInner}
           />
         </Modal>
-
-        <Modal isOpen={isModalOpenInner} onClose={handleCloseInnerModal}>
-          <PackSeperate />
-          <ModalButtonVertical
-            onCancel={handleCloseInnerModal}
-            onConfirm={handleConfirm}
-          />
-        </Modal>
       </div>
 
       {/* 히스토리 필기분리 팝업 ex)전에 옮긴 노트에 마저 옮길래? */}
       <Modal isOpen={isNewModalOpen} onClose={handleCloseNewModal}>
         <HistorySeperate />
-        <ModalButtonVertical2
+        <ModalButtonHorizon
           onCancel={handleCloseNewModal}
+          onConfirm={handleModalOpenInner}
+        />
+      </Modal>
+
+      {/* 겹침 필기분리 */}
+      <Modal isOpen={isModalOpenInner} onClose={handleCloseInnerModal}>
+        <PackSeperate />
+        <ModalButtonVertical
+          onCancel={handleCloseInnerModal}
           onConfirm={handleConfirm}
         />
       </Modal>

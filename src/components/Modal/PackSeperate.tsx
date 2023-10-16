@@ -2,7 +2,7 @@ import React from "react";
 import ToggleSwitch from "../Icon/ToggleSwitch";
 import styled from "styled-components";
 
-import { ReactComponent as Book } from "../../assets/cover/book.svg";
+import Notes from "../../assets/icon/SF_notes.png";
 
 const PackSeperateStyle = styled.div`
   display: flex;
@@ -20,7 +20,7 @@ const PackSeperateStyle = styled.div`
 const PackSeperate = () => {
   return (
     <PackSeperateStyle>
-      <Book />
+      <img src={Notes}></img>
       <h2>
         '2023 Planner Basic'에
         <br />
