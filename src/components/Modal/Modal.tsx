@@ -40,8 +40,18 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
     transform: isOpen ? "translateY(0)" : "translateY(100%)",
   };
 
+  const handleModalClick = (e: React.MouseEvent) => {
+    // 배경 클릭 시 모달을 닫도록
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <ModalContainer className={`modal ${isOpen ? "open" : ""}`}>
+    <ModalContainer
+      className={`modal ${isOpen ? "open" : ""}`}
+      onClick={handleModalClick} // 배경 클릭 시 닫히도록
+    >
       <ModalStyle style={modalStyle}>
         <div className="modal-content" style={{ width: "100%" }}>
           {children}

@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { ReactComponent as UpNote } from "../../assets/icon/SF_up_note.svg";
+import { ReactComponent as Backward } from "../../assets/icon/SF_backward.svg";
+
 import TimeRange from "../../components/TimelineSlider/App";
 import {
   randomTimes,
@@ -9,25 +14,29 @@ import {
 import { SplitRange, NoteDate } from "./SplitStyle";
 
 import Modal from "../../components/Modal/Modal";
-import NewSeperate from "../../components/Modal/NewSeperate";
-import PackSeperate from "../../components/Modal/PackSeperate";
-import HistorySeperate from "../../components/Modal/HistorySeperate";
+import SelectSeperate from "../../components/Modal/SelectSeperate";
 import ModalButtonHorizon from "../../components/Modal/ModalButtonHorizon";
-import ModalButtonVertical from "../../components/Modal/ModalButtonVertical";
+
 import Snackbar from "../../components/SnackBar/SnackBar";
 
-import { ReactComponent as UpNote } from "../../assets/icon/SF_up_note.svg";
-import { ReactComponent as Backward } from "../../assets/icon/SF_backward.svg";
+import Pagination from "../../components/Pagination/Pagination";
 
-const Split = () => {
+const itemsPerPage = 10; // 페이지 당 아이템 수
+const totalItems = 100; // 전체 아이템 수
+
+const SplitBatchPagination = () => {
   const [currentInterval, setCurrentInterval] = useState(selectedInterval);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isNewModalOpen, setIsNewModalOpen] = useState(false);
-  const [isModalOpenInner, setIsModalOpenInner] = useState(false);
-
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const navigate = useNavigate(); // useNavigate 훅 사용
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   const onChangeCallback = (formattedNewTime: [Date]) => {
     setCurrentInterval(formattedNewTime);
@@ -37,35 +46,22 @@ const Split = () => {
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
 
-  /* 히스토리 필기분리 팝업 ex)전에 옮긴 노트에 마저 옮길래? */
-  const handleOpenNewModal = () => {
-    setIsNewModalOpen(true);
-  };
-  const handleCloseNewModal = () => {
-    setIsNewModalOpen(false);
+  // 스낵바 열기
+  const openSnackbar = (message: string) => {
+    setSnackbarMessage(message);
+    setIsSnackbarOpen(true);
   };
 
-  /* 일반 필기분리 팝업 -> 추가 분리 팝업(2중) */
-  const handleModalOpenInner = () => {
-    setIsModalOpen(false);
-    setIsNewModalOpen(false);
-    setIsModalOpenInner(true);
-  };
-
-  const handleCloseInnerModal = () => {
-    setIsModalOpenInner(false);
-  };
-
-  /* 스낵바 */
   const handleConfirm = () => {
-    setIsModalOpen(false);
-    setIsModalOpenInner(false);
-    setIsSnackbarOpen(true); // 스낵바를 열도록 상태 업데이트
+    navigate("/main");
+    openSnackbar("'2023 Planner Pro_001'으로 분리되었습니다.");
   };
+
   const handleCloseSnackbar = () => {
     setIsSnackbarOpen(false);
   };
@@ -102,15 +98,7 @@ const Split = () => {
             onClick={handleOpenModal}
           >
             <UpNote />
-            일반 분리 모달
-          </button>
-
-          <button
-            style={{ width: "44px", padding: "0" }}
-            onClick={handleOpenNewModal}
-          >
-            <UpNote />
-            히스토리 분리 모달
+            SKIP
           </button>
         </header>
         <div
@@ -121,9 +109,16 @@ const Split = () => {
             minHeight: "60vh",
           }}
         >
-          캔버스 영역
+          캔버스 영역 / 최근 노트로 일괄분리
         </div>
         {/* 임시 헤더, 캔버스영역 e */}
+
+        {/* Pagination 컴포넌트를 사용합니다. */}
+        <Pagination
+          totalPages={Math.ceil(totalItems / itemsPerPage)}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
 
         <SplitRange>
           <div className="container">
@@ -157,44 +152,23 @@ const Split = () => {
         </SplitRange>
       </div>
 
-      {/* 일반 필기분리 모달 */}
+      {/* 일괄 필기분리 모달 */}
       <div>
         <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-          <NewSeperate />
+          <SelectSeperate />
           <ModalButtonHorizon
             onCancel={handleCloseModal}
-            onConfirm={handleModalOpenInner}
+            onConfirm={handleConfirm}
           />
         </Modal>
       </div>
 
-      {/* 히스토리 필기분리 팝업 ex)전에 옮긴 노트에 마저 옮길래? */}
-      <Modal isOpen={isNewModalOpen} onClose={handleCloseNewModal}>
-        <HistorySeperate />
-        <ModalButtonHorizon
-          onCancel={handleCloseNewModal}
-          onConfirm={handleModalOpenInner}
-        />
-      </Modal>
-
-      {/* 겹침 필기분리 - handleModalOpenInner */}
-      <Modal isOpen={isModalOpenInner} onClose={handleCloseInnerModal}>
-        <PackSeperate />
-        <ModalButtonVertical
-          onCancel={handleCloseInnerModal}
-          onConfirm={handleConfirm}
-        />
-      </Modal>
-
       {/* 스낵바 */}
       {isSnackbarOpen && (
-        <Snackbar
-          message="'2023 Planner Pro_001'으로 분리되었습니다."
-          onClose={handleCloseSnackbar}
-        />
+        <Snackbar message={snackbarMessage} onClose={handleCloseSnackbar} />
       )}
     </>
   );
 };
 
-export default Split;
+export default SplitBatchPagination;

@@ -1,10 +1,11 @@
 import React from "react";
-import ToggleSwitch from "../../components/Icon/ToggleSwitch";
+import ToggleSwitch from "../Icon/ToggleSwitch";
 import styled from "styled-components";
 
 import { ReactComponent as Book } from "../../assets/cover/book.svg";
+import { ReactComponent as Thumb } from "../../assets/cover/thumb.svg";
 
-const SeperateWritingStyle = styled.div`
+const NewSeperateStyle = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -26,7 +27,6 @@ const SeperateWritingStyle = styled.div`
       & .book {
         width: 123px;
         height: 185px;
-        background: #ddd;
       }
     }
   }
@@ -55,9 +55,9 @@ const SeperateWritingStyle = styled.div`
   }
 `;
 
-const SeperateWriting = () => {
+const NewSeperate = () => {
   return (
-    <SeperateWritingStyle>
+    <NewSeperateStyle>
       {/* 모달 내용 */}
       <h2>
         선택하신 필기는
@@ -66,7 +66,7 @@ const SeperateWriting = () => {
       <div className="bookImgWrap">
         <div className="bookImg">
           <span className="book">
-            <Book />
+            <Thumb />
           </span>
           <span>2023 Planner Pro</span>
         </div>
@@ -91,8 +91,8 @@ const SeperateWriting = () => {
           자동으로 분리한 노트북을 활성화합니다.
         </div>
       </div>
-    </SeperateWritingStyle>
+    </NewSeperateStyle>
   );
 };
 
-export default SeperateWriting;
+export default NewSeperate;

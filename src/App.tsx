@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
-import GlobalStyles from 'styles/GlobalStyles';
+import React, { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import GlobalStyles from "styles/GlobalStyles";
 
-import './App.scss';
+import "./App.scss";
 
-import Split from './views/Split/split';
+import Split from "./views/Split/Split";
+import SplitBatchPagination from "./views/Split/SplitBatchPagination";
 
-import { darkTheme, lightTheme } from './styles/theme';
+import { darkTheme, lightTheme } from "./styles/theme";
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -16,8 +17,12 @@ const App = () => {
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <GlobalStyles />
       <Routes>
-        <Route path="/split" element={<Split />} />
+        <Route path="/Split" element={<Split />} />
         <Route path="*" element={<Split />} />
+        <Route
+          path="/SplitBatchPagination"
+          element={<SplitBatchPagination />}
+        />
       </Routes>
     </ThemeProvider>
   );

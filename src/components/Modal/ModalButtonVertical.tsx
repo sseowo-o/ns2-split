@@ -1,6 +1,7 @@
 import React from "react";
-import { Button } from "../Icon/Button";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { Button } from "../Icon/Button";
 
 const ModalButtonVerticalStyle = styled.div`
   width: 100%;
@@ -19,16 +20,23 @@ const ModalButtonVertical: React.FC<ModalButtonVerticalProps> = ({
   onCancel,
   onConfirm,
 }) => {
+  const navigate = useNavigate();
+  const navigate2 = useNavigate();
+
+  const SplitBatchPagination = () => {
+    navigate("/SplitBatchPagination");
+  };
+
   return (
     <ModalButtonVerticalStyle>
-      <Button type="button" className="confirm" /* onClick={onConfirm} */>
+      <Button type="button" className="confirm" onClick={SplitBatchPagination}>
         일괄 분리하기
       </Button>
       <Button type="button" className="cancle" onClick={onConfirm}>
         현재 페이지만 분리하기
       </Button>
-      <Button type="button" className="none" /* onClick={onCancel} */>
-        새로운 노트북으로 분리
+      <Button type="button" className="none" onClick={onCancel}>
+        취소
       </Button>
     </ModalButtonVerticalStyle>
   );
