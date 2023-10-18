@@ -24,11 +24,18 @@ const ModalStyle = styled.div`
     font-size: 20px;
     line-height: 28px;
     text-align: center;
+    position: relative;
     & input {
       border-bottom: 1px solid #757575;
       padding: 4px 0;
-      font-size: 2.1rem;
       text-align: center;
+      width: 100%;
+    }
+    & .charCount {
+      position: absolute;
+      bottom: 4px;
+      font-size: 1.2rem;
+      right: 0;
     }
   }
 `;

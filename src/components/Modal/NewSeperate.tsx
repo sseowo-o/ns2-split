@@ -60,14 +60,13 @@ const NewSeperateStyle = styled.div`
 const NewSeperate = () => {
   const [isInputClicked, setIsInputClicked] = useState(false);
   const [inputText, setInputText] = useState("");
-  const [maxBytes, setMaxBytes] = useState(20); // 최대 바이트 수
-  const [maxKoreanCharacters, setMaxKoreanCharacters] = useState(12); // 최대 한글 글자수
+  const [maxBytes, setMaxBytes] = useState(25); // 최대 바이트 수
+  const [maxKoreanCharacters, setMaxKoreanCharacters] = useState(24); // 최대 한글 글자수
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const text = e.target.value;
 
-    let koreanCharacterCount = (text.match(/[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]/g) || [])
-      .length;
+    let koreanCharacterCount = (text.match(/^[가-힣\s]+$/g) || []).length;
 
     if (koreanCharacterCount <= maxKoreanCharacters) {
       setInputText(text);
@@ -77,7 +76,9 @@ const NewSeperate = () => {
   return (
     <NewSeperateStyle>
       <h2>
-        선택하신 필기는{" "}
+        선택하신 필기는
+        <br />
+        다음 노트북으로 분리됩니다.
         <input
           onFocus={() => {
             setIsInputClicked(true);
@@ -85,13 +86,15 @@ const NewSeperate = () => {
           onBlur={() => {
             setIsInputClicked(false);
           }}
-          placeholder={isInputClicked === true ? "" : "2023 Planner Pro_001"}
+          placeholder={"노트북 이름을 입력해주세요"}
           type="text"
-          value={inputText}
+          value={isInputClicked ? inputText : "2023 Planner Pro_001"}
           onChange={handleInputChange}
           maxLength={maxBytes}
         />
-        으로 분리됩니다.
+        <div className="charCount">
+          {inputText.length} / {maxBytes}
+        </div>
       </h2>
       <div className="bookImgWrap">
         <div className="bookImg">
