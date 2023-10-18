@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ToggleSwitch from "../Icon/ToggleSwitch";
 import styled from "styled-components";
 
@@ -17,6 +17,7 @@ const NewSeperateStyle = styled.div`
     justify-content: center;
     align-items: center;
     gap: 16px;
+
     & .bookImg {
       display: flex;
       flex-direction: column;
@@ -37,6 +38,7 @@ const NewSeperateStyle = styled.div`
     height: 1px;
     background: #dcdcdc;
   }
+
   & .info {
     & .infoTit {
       display: flex;
@@ -56,12 +58,40 @@ const NewSeperateStyle = styled.div`
 `;
 
 const NewSeperate = () => {
+  const [isInputClicked, setIsInputClicked] = useState(false);
+  const [inputText, setInputText] = useState("");
+  const [maxBytes, setMaxBytes] = useState(20); // 최대 바이트 수
+  const [maxKoreanCharacters, setMaxKoreanCharacters] = useState(12); // 최대 한글 글자수
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const text = e.target.value;
+
+    let koreanCharacterCount = (text.match(/[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]/g) || [])
+      .length;
+
+    if (koreanCharacterCount <= maxKoreanCharacters) {
+      setInputText(text);
+    }
+  };
+
   return (
     <NewSeperateStyle>
-      {/* 모달 내용 */}
       <h2>
-        선택하신 필기는
-        <br />새 노트북으로 분리됩니다.
+        선택하신 필기는{" "}
+        <input
+          onFocus={() => {
+            setIsInputClicked(true);
+          }}
+          onBlur={() => {
+            setIsInputClicked(false);
+          }}
+          placeholder={isInputClicked === true ? "" : "2023 Planner Pro_001"}
+          type="text"
+          value={inputText}
+          onChange={handleInputChange}
+          maxLength={maxBytes}
+        />
+        으로 분리됩니다.
       </h2>
       <div className="bookImgWrap">
         <div className="bookImg">

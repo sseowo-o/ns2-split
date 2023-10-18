@@ -59,7 +59,9 @@ const SelectSeperate = () => {
   return (
     <SelectSeperateStyle>
       {/* 모달 내용 */}
-      <h2>선택하신 필기는 '2023 Planner Pro_001'으로 분리됩니다.</h2>
+      <h2>
+        선택하신 필기는 '<span>바꾼 노트북 명</span>'으로 분리됩니다.
+      </h2>
       <div className="bookImgWrap">
         <div className="bookImg">
           <span className="book">
@@ -72,7 +74,7 @@ const SelectSeperate = () => {
           <span className="book">
             <Book />
           </span>
-          <span>2023 Planner Pro_001</span>
+          <span>바꾼 노트북 명</span>
         </div>
       </div>
       <span className="line"></span>

@@ -110,7 +110,7 @@ const HistorySeperate: React.FC = () => {
   return (
     <HistorySeperateStyle>
       <h2>
-        최근에 '2023 Planner Pro_001'으로 분리한 이력이 있습니다.
+        최근에 '<span>바꾼 노트북명</span>'으로 분리한 이력이 있습니다.
         <p>분리할 노트북을 선택해주세요.</p>
       </h2>
       <div className="bookImgWrap">
@@ -136,7 +136,7 @@ const HistorySeperate: React.FC = () => {
               onChange={handleNotebookSelect}
             />
             <b>최근 노트북</b>
-            <p>2023 Planner Pro_001</p>
+            <p>바꾼 노트북명</p>
           </label>
           <label
             className={`book ${

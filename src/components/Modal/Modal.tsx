@@ -22,10 +22,14 @@ const ModalStyle = styled.div`
   transition: transform 0.3s ease-in-out;
   & h2 {
     font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 28px;
     text-align: center;
+    & input {
+      border-bottom: 1px solid #757575;
+      padding: 4px 0;
+      font-size: 2.1rem;
+      text-align: center;
+    }
   }
 `;
 
