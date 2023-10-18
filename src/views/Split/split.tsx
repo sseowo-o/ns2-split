@@ -97,21 +97,23 @@ const Split = () => {
           >
             월요회의 정리
           </span>
-          <button
-            style={{ width: "44px", padding: "0" }}
-            onClick={handleOpenModal}
-          >
-            <UpNote />
-            일반 분리 모달
-          </button>
+          <div style={{ display: "inline", marginRight: "50px" }}>
+            <button
+              style={{ width: "44px", padding: "0" }}
+              onClick={handleOpenModal}
+            >
+              <UpNote />
+              일반 분리 모달
+            </button>
 
-          <button
-            style={{ width: "44px", padding: "0" }}
-            onClick={handleOpenNewModal}
-          >
-            <UpNote />
-            히스토리 분리 모달
-          </button>
+            <button
+              style={{ width: "44px", padding: "0" }}
+              onClick={handleOpenNewModal}
+            >
+              <UpNote />
+              히스토리 분리 모달
+            </button>
+          </div>
         </header>
         <div
           style={{
