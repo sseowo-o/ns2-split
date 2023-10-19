@@ -7,7 +7,7 @@ import { ReactComponent as Book } from "../../assets/cover/book.svg";
 const HistorySeperateStyle = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 32px;
   width: 100%;
   & p {
     color: #757575;
@@ -30,7 +30,7 @@ const HistorySeperateStyle = styled.div`
       align-items: center;
       gap: 4px;
       color: #757575;
-      font-size: 11px;
+      font-size: 1.2rem;
     }
     & .bookChoice {
       display: flex;
@@ -86,12 +86,12 @@ const HistorySeperateStyle = styled.div`
       justify-content: space-between;
 
       & h3 {
-        font-size: 17px;
+        font-size: 1.6rem;
       }
     }
 
     & .infoCont {
-      font-size: 13px;
+      font-size: 1.2rem;
       color: #757576;
       margin-top: 8px;
     }

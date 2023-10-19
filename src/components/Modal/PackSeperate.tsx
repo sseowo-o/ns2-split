@@ -8,7 +8,7 @@ const PackSeperateStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 32px;
   width: 100%;
   text-align: center;
 

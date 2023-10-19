@@ -8,7 +8,7 @@ import { ReactComponent as Thumb } from "../../assets/cover/thumb.svg";
 const NewSeperateStyle = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 32px;
   width: 100%;
 
   & .bookImgWrap {
@@ -24,7 +24,7 @@ const NewSeperateStyle = styled.div`
       align-items: center;
       gap: 4px;
       color: #757575;
-      font-size: 11px;
+      font-size: 1.2rem;
       & .book {
         width: 123px;
         height: 185px;
@@ -45,12 +45,12 @@ const NewSeperateStyle = styled.div`
       justify-content: space-between;
 
       & h3 {
-        font-size: 17px;
+        font-size: 1.6rem;
       }
     }
 
     & .infoCont {
-      font-size: 13px;
+      font-size: 1.2rem;
       color: #757576;
       margin-top: 8px;
     }

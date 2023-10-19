@@ -21,7 +21,7 @@ const ModalStyle = styled.div`
   width: 100%;
   transition: transform 0.3s ease-in-out;
   & h2 {
-    font-size: 20px;
+    font-size: 2rem;
     line-height: 28px;
     text-align: center;
     position: relative;
@@ -38,7 +38,7 @@ const ModalStyle = styled.div`
       right: 0;
     }
     & .errorMessage {
-      font-size: 10px;
+      font-size: 1.2rem;
       color: #ff2d2d;
       position: absolute;
       left: 50%;

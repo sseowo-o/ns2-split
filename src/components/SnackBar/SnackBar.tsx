@@ -12,7 +12,7 @@ const SnackbarStyle = styled.div`
   left: 50%;
   transform: translateX(-50%);
   & p {
-    font-size: 14px;
+    font-size: 1.4rem;
     text-align: center;
   }
 `;

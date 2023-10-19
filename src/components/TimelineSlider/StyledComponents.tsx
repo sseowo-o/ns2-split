@@ -92,7 +92,7 @@ export const StyledHandleLabel = styled.div<HandleLabelProps>`
   position: absolute;
   width: 115px;
   top: -40px;
-  font-size: 12px;
+  font-size: 1.2rem;
   padding: 4px;
   border-radius: 4px;
   color: #fff;
