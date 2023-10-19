@@ -61,16 +61,25 @@ const NewSeperate = () => {
   const [isInputClicked, setIsInputClicked] = useState(false);
   const [inputText, setInputText] = useState("");
   const [maxBytes, setMaxBytes] = useState(25); // 최대 바이트 수
-  const [maxKoreanCharacters, setMaxKoreanCharacters] = useState(24); // 최대 한글 글자수
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const text = e.target.value;
 
-    let koreanCharacterCount = (text.match(/^[가-힣\s]+$/g) || []).length;
-
-    if (koreanCharacterCount <= maxKoreanCharacters) {
+    if (text.match(/[\{\}\[\]\/?.,;:|\)*~`!^\+<>@\#$%&\\\=\(\'\"]/g)) {
+      setErrorMessage("특수문자는 '-','_'만 입력이 가능합니다.");
+    } else {
+      setErrorMessage(""); // 특수 문자가 없으면 에러 메시지 지우기
       setInputText(text);
     }
+  };
+
+  const handleFocus = () => {
+    setIsInputClicked(true);
+  };
+
+  const handleBlur = () => {
+    setIsInputClicked(false);
   };
 
   return (
@@ -80,21 +89,22 @@ const NewSeperate = () => {
         <br />
         다음 노트북으로 분리됩니다.
         <input
-          onFocus={() => {
-            setIsInputClicked(true);
-          }}
-          onBlur={() => {
-            setIsInputClicked(false);
-          }}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           placeholder={"노트북 이름을 입력해주세요"}
           type="text"
-          value={isInputClicked ? inputText : "2023 Planner Pro_001"}
+          value={
+            isInputClicked || inputText.length > 0
+              ? inputText
+              : "2023 Planner Pro_001"
+          }
           onChange={handleInputChange}
           maxLength={maxBytes}
         />
         <div className="charCount">
           {inputText.length} / {maxBytes}
         </div>
+        {errorMessage && <div className="errorMessage">{errorMessage}</div>}
       </h2>
       <div className="bookImgWrap">
         <div className="bookImg">

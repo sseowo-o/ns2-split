@@ -37,6 +37,13 @@ const ModalStyle = styled.div`
       font-size: 1.2rem;
       right: 0;
     }
+    & .errorMessage {
+      font-size: 10px;
+      color: #ff2d2d;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 `;
 
