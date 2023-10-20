@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { ReactComponent as Onboarding } from "../../assets/icon/Onboarding.svg";
 
-const ModalContainer = styled.div`
+const ModalContainer = styled.article`
   &.open {
     width: 100%;
     height: 100vh;
@@ -14,12 +15,18 @@ const ModalContainer = styled.div`
 const ModalStyle = styled.div`
   background: #fff;
   border-radius: 10px 10px 0 0;
-  padding: 32px 24px;
+  padding: 40px 24px;
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   transition: transform 0.3s ease-in-out;
+  & .Onboarding {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+  }
   & h2 {
     font-size: 2rem;
     line-height: 28px;
@@ -47,6 +54,24 @@ const ModalStyle = styled.div`
   }
 `;
 
+const OnboardingWrap = styled.article`
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+`;
+const OnboardingContents = styled.div`
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999; // 다른 모달 위로 올라오도록 z-index 설정
+`;
+
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -54,6 +79,8 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+  const [showOnboardingPopup, setShowOnboardingPopup] = useState(false);
+
   const modalStyle = {
     transform: isOpen ? "translateY(0)" : "translateY(100%)",
   };
@@ -65,16 +92,39 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
     }
   };
 
+  const handleOnboardingClick = () => {
+    // "Onboarding" 클릭 시 추가 팝업 표시
+    setShowOnboardingPopup(true);
+  };
+
+  const closeOnboardingPopup = () => {
+    // 추가 팝업을 닫을 때
+    setShowOnboardingPopup(false);
+  };
+
   return (
     <ModalContainer
       className={`modal ${isOpen ? "open" : ""}`}
       onClick={handleModalClick} // 배경 클릭 시 닫히도록
     >
       <ModalStyle style={modalStyle}>
-        <div className="modal-content" style={{ width: "100%" }}>
+        <div
+          className="modal-content"
+          style={{ width: "100%", maxWidth: "700px", margin: "0 auto" }}
+        >
           {children}
         </div>
+        <Onboarding className="Onboarding" onClick={handleOnboardingClick} />
       </ModalStyle>
+      {showOnboardingPopup && (
+        <OnboardingWrap>
+          <OnboardingContents>
+            {/* 추가 팝업 내용 */}
+            <h2>Onboarding Popup</h2>
+            <button onClick={closeOnboardingPopup}>Close</button>
+          </OnboardingContents>
+        </OnboardingWrap>
+      )}
     </ModalContainer>
   );
 };

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { ReactComponent as Book } from "../../assets/cover/book.svg";
 import { ReactComponent as Thumb } from "../../assets/cover/thumb.svg";
 
-const NewSeperateStyle = styled.div`
+const NewSeperateStyle = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -84,56 +84,64 @@ const NewSeperate = () => {
 
   return (
     <NewSeperateStyle>
-      <h2>
-        선택하신 필기는
-        <br />
-        다음 노트북으로 분리됩니다.
-        <input
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          placeholder={"노트북 이름을 입력해주세요"}
-          type="text"
-          value={
-            isInputClicked || inputText.length > 0
-              ? inputText
-              : "2023 Planner Pro_001"
-          }
-          onChange={handleInputChange}
-          maxLength={maxBytes}
-        />
-        <div className="charCount">
-          {inputText.length} / {maxBytes}
-        </div>
-        {errorMessage && <div className="errorMessage">{errorMessage}</div>}
-      </h2>
-      <div className="bookImgWrap">
-        <div className="bookImg">
-          <span className="book">
-            <Thumb />
-          </span>
-          <span>2023 Planner Pro</span>
-        </div>
-        <span style={{ fontSize: "30px" }}>&raquo; </span>
-        <div className="bookImg">
-          <span className="book">
-            <Book />
-          </span>
-          <span>2023 Planner Pro_001</span>
-        </div>
-      </div>
-      <span className="line"></span>
-      <div className="info">
-        <div className="infoTit">
-          <h3>분리 노트북 활성화</h3>
-          <ToggleSwitch />
-        </div>
-
-        <div className="infoCont">
-          해당 기능을 켜면 필기 분리를 할 때마다
+      <li>
+        <h2>
+          선택하신 필기는
           <br />
-          자동으로 분리한 노트북을 활성화합니다.
-        </div>
-      </div>
+          다음 노트북으로 분리됩니다.
+          <input
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            placeholder={"노트북 이름을 입력해주세요"}
+            type="text"
+            value={
+              isInputClicked || inputText.length > 0
+                ? inputText
+                : "2023 Planner Pro_001"
+            }
+            onChange={handleInputChange}
+            maxLength={maxBytes}
+          />
+          <div className="charCount">
+            {inputText.length} / {maxBytes}
+          </div>
+          {errorMessage && <div className="errorMessage">{errorMessage}</div>}
+        </h2>
+      </li>
+      <li>
+        <ul className="bookImgWrap">
+          <li className="bookImg">
+            <span className="book">
+              <Thumb />
+            </span>
+            <span>2023 Planner Pro</span>
+          </li>
+          <li style={{ fontSize: "30px" }}>&raquo; </li>
+          <li className="bookImg">
+            <span className="book">
+              <Book />
+            </span>
+            <span>2023 Planner Pro_001</span>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span className="line"></span>
+      </li>
+      <li>
+        <ul className="info">
+          <li className="infoTit">
+            <h3>분리 노트북 활성화</h3>
+            <ToggleSwitch />
+          </li>
+
+          <li className="infoCont">
+            해당 기능을 켜면 필기 분리를 할 때마다
+            <br />
+            자동으로 분리한 노트북을 활성화합니다.
+          </li>
+        </ul>
+      </li>
     </NewSeperateStyle>
   );
 };
