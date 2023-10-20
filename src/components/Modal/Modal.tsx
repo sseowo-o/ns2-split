@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as Onboarding } from "../../assets/icon/Onboarding.svg";
+import Swiper from "components/Swiper/Swiper";
 
 const ModalContainer = styled.article`
   &.open {
@@ -59,7 +60,7 @@ const OnboardingWrap = styled.article`
   height: 100vh;
   position: fixed;
   top: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
 `;
 const OnboardingContents = styled.div`
   background: #fff;
@@ -121,6 +122,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
           <OnboardingContents>
             {/* 추가 팝업 내용 */}
             <h2>Onboarding Popup</h2>
+            <Swiper />
             <button onClick={closeOnboardingPopup}>Close</button>
           </OnboardingContents>
         </OnboardingWrap>
