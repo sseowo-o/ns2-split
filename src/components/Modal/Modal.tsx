@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as Onboarding } from "../../assets/icon/Onboarding.svg";
-import Swiper from "components/Swiper/Swiper";
+import OnboardingSwiper from "components/Swiper/OnboardingSwiper";
 
 const ModalContainer = styled.article`
   &.open {
@@ -64,13 +64,33 @@ const OnboardingWrap = styled.article`
 `;
 const OnboardingContents = styled.div`
   background: #fff;
-  border-radius: 10px;
-  padding: 20px;
+  border-radius: 4px;
+  padding: 40px 20px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 999; // 다른 모달 위로 올라오도록 z-index 설정
+  z-index: 999;
+
+  & button.close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    &:after, &:before{
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      content: ' ';
+      height: 25px;
+      width: 3px;
+      background-color: #000;
+      }
+    &:after{transform: rotate(-45deg);}
+    &:before{transform: rotate(45deg);}
+    }
+  }
 `;
 
 interface ModalProps {
@@ -120,10 +140,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
       {showOnboardingPopup && (
         <OnboardingWrap>
           <OnboardingContents>
-            {/* 추가 팝업 내용 */}
             <h2>Onboarding Popup</h2>
-            <Swiper />
-            <button onClick={closeOnboardingPopup}>Close</button>
+            <OnboardingSwiper />
+            <button className="close" onClick={closeOnboardingPopup}></button>
           </OnboardingContents>
         </OnboardingWrap>
       )}
