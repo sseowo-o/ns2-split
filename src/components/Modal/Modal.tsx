@@ -55,14 +55,9 @@ const ModalStyle = styled.div`
   }
 `;
 
-const OnboardingWrap = styled.article`
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  background: rgba(0, 0, 0, 0.8);
-`;
 const OnboardingContents = styled.div`
+width: 100%;
+height: 100%;
   background: #fff;
   border-radius: 4px;
   padding: 40px 20px;
@@ -71,6 +66,7 @@ const OnboardingContents = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
+
 
   & button.close {
     position: absolute;
@@ -84,7 +80,7 @@ const OnboardingContents = styled.div`
       left: 50%;
       content: ' ';
       height: 25px;
-      width: 3px;
+      width: 2px;
       background-color: #000;
       }
     &:after{transform: rotate(-45deg);}
@@ -138,13 +134,10 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         <Onboarding className="Onboarding" onClick={handleOnboardingClick} />
       </ModalStyle>
       {showOnboardingPopup && (
-        <OnboardingWrap>
-          <OnboardingContents>
-            <h2>Onboarding Popup</h2>
-            <OnboardingSwiper />
-            <button className="close" onClick={closeOnboardingPopup}></button>
-          </OnboardingContents>
-        </OnboardingWrap>
+        <OnboardingContents>
+          <OnboardingSwiper />
+          <button className="close" onClick={closeOnboardingPopup}></button>
+        </OnboardingContents>
       )}
     </ModalContainer>
   );
