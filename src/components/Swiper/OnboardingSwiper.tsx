@@ -33,6 +33,10 @@ const OnboardingSwiper: React.FC = () => {
         <p>
           분리하기를 누르면
           <br />새 노트북으로 분리됩니다.
+          <span>
+            내가 속한 노트북의 복제본이 <br />
+            자동으로 생성되어 이동합니다.
+          </span>
         </p>
       </div>
       <div>
