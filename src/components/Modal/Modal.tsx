@@ -46,6 +46,7 @@ const ModalStyle = styled.div`
       right: 0;
     }
     & .errorMessage {
+      width: 100%;
       font-size: 1.2rem;
       color: #ff2d2d;
       position: absolute;

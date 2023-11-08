@@ -49,8 +49,11 @@ const OnboardingSwiper: React.FC = () => {
       <div>
         <img src={Onboarding05} alt="Onboarding05"></img>
         <p>
-          겹친 필기가 더 있는 경우
-          <br /> 일괄적으로 이동할 지<br /> 체크를 합니다.
+          나머지 겹친 필기까지 분리하면
+          <br />
+          생성한 노트북으로 성공적으로
+          <br />
+          이동이 완료됩니다.
         </p>
       </div>
     </Carousel>
