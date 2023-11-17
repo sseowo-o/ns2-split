@@ -6,7 +6,7 @@ export const Button = styled.button`
   flex: 1 0 0;
   border-radius: 4px;
 
-  &.cancle {
+  &.cancel {
     border: 1px solid #cfcfcf;
   }
 

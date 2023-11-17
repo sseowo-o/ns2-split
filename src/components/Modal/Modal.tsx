@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as Onboarding } from "../../assets/icon/Onboarding.svg";
 import OnboardingSwiper from "components/Swiper/OnboardingSwiper";
+import SwiperModal from "components/Swiper/SwiperModal";
 
 const ModalContainer = styled.article`
   &.open {
@@ -10,6 +11,29 @@ const ModalContainer = styled.article`
     position: fixed;
     top: 0;
     background: rgba(0, 0, 0, 0.5);
+  }
+  & button.close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    &:after,
+    &:before {
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      content: " ";
+      height: 25px;
+      width: 2px;
+      background-color: #000;
+    }
+    &:after {
+      transform: rotate(-45deg);
+    }
+    &:before {
+      transform: rotate(45deg);
+    }
   }
 `;
 
@@ -52,40 +76,6 @@ const ModalStyle = styled.div`
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-    }
-  }
-`;
-
-const OnboardingContents = styled.div`
-width: 100%;
-height: 100%;
-  background: #fff;
-  border-radius: 4px;
-  padding: 40px 20px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 999;
-
-
-  & button.close {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 50px;
-    height: 50px;
-    &:after, &:before{
-      position: absolute;
-      top: 25%;
-      left: 50%;
-      content: ' ';
-      height: 25px;
-      width: 2px;
-      background-color: #000;
-      }
-    &:after{transform: rotate(-45deg);}
-    &:before{transform: rotate(45deg);}
     }
   }
 `;
@@ -135,10 +125,13 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         <Onboarding className="Onboarding" onClick={handleOnboardingClick} />
       </ModalStyle>
       {showOnboardingPopup && (
-        <OnboardingContents>
+        <SwiperModal
+          isOpen={showOnboardingPopup}
+          onClose={closeOnboardingPopup}
+        >
           <OnboardingSwiper />
           <button className="close" onClick={closeOnboardingPopup}></button>
-        </OnboardingContents>
+        </SwiperModal>
       )}
     </ModalContainer>
   );

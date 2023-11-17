@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 import { Button } from "../Icon/Button";
 
 const ModalButtonVerticalStyle = styled.div`
@@ -14,31 +13,29 @@ const ModalButtonVerticalStyle = styled.div`
 interface ModalButtonVerticalProps {
   onCancel: () => void;
   onConfirm: () => void;
+  onCheckPage: () => void;
 }
 
 const ModalButtonVertical: React.FC<ModalButtonVerticalProps> = ({
   onCancel,
   onConfirm,
+  onCheckPage,
 }) => {
-  const navigate = useNavigate();
-  const navigate2 = useNavigate();
-
-  const SplitBatchPagination = () => {
-    navigate("/SplitBatchPagination");
-  };
-
   return (
-    <ModalButtonVerticalStyle>
-      <Button type="button" className="confirm" onClick={SplitBatchPagination}>
-        일괄 분리하기
-      </Button>
-      <Button type="button" className="cancle" onClick={onConfirm}>
-        현재 페이지만 분리하기
-      </Button>
-      <Button type="button" className="none" onClick={onCancel}>
-        취소
-      </Button>
-    </ModalButtonVerticalStyle>
+    <>
+      <ModalButtonVerticalStyle>
+        <Button type="button" className="confirm" onClick={onCheckPage}>
+          일괄 분리하기
+        </Button>
+        <Button type="button" className="cancel" onClick={onConfirm}>
+          현재 페이지만 분리하기
+        </Button>
+        <Button type="button" className="none" onClick={onCancel}>
+          취소
+        </Button>
+      </ModalButtonVerticalStyle>
+      {/* 일반 필기분리 모달 */}
+    </>
   );
 };
 

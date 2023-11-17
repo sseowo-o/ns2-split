@@ -6,7 +6,6 @@ import GlobalStyles from "styles/GlobalStyles";
 import "./App.scss";
 
 import Split from "./views/Split/Split";
-import SplitBatchPagination from "./views/Split/SplitBatchPagination";
 
 import { darkTheme, lightTheme } from "./styles/theme";
 
@@ -19,10 +18,6 @@ const App = () => {
       <Routes>
         <Route path="/Split" element={<Split />} />
         <Route path="*" element={<Split />} />
-        <Route
-          path="/SplitBatchPagination"
-          element={<SplitBatchPagination />}
-        />
       </Routes>
     </ThemeProvider>
   );

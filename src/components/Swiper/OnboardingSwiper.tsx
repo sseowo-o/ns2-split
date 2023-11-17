@@ -11,7 +11,12 @@ import Onboarding05 from "../../assets/images/Onboarding05.png";
 
 const OnboardingSwiper: React.FC = () => {
   return (
-    <Carousel infiniteLoop={true} showThumbs={false} showStatus={false}>
+    <Carousel
+      infiniteLoop={true}
+      showThumbs={false}
+      showStatus={false}
+      className="onboarding"
+    >
       <div>
         <img src={Onboarding01} alt="Onboarding01"></img>
         <p>

@@ -12,9 +12,14 @@ import Modal from "../../components/Modal/Modal";
 import NewSeperate from "../../components/Modal/NewSeperate";
 import PackSeperate from "../../components/Modal/PackSeperate";
 import HistorySeperate from "../../components/Modal/HistorySeperate";
+
 import ModalButtonHorizon from "../../components/Modal/ModalButtonHorizon";
 import ModalButtonVertical from "../../components/Modal/ModalButtonVertical";
+
 import Snackbar from "../../components/SnackBar/SnackBar";
+
+import SwiperModal from "components/Swiper/SwiperModal";
+import CheckPage from "components/Swiper/CheckPage";
 
 import { ReactComponent as UpNote } from "../../assets/icon/SF_up_note.svg";
 import { ReactComponent as Backward } from "../../assets/icon/SF_backward.svg";
@@ -25,8 +30,8 @@ const Split = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isNewModalOpen, setIsNewModalOpen] = useState(false);
   const [isModalOpenInner, setIsModalOpenInner] = useState(false);
-
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
+
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const onChangeCallback = (formattedNewTime: [Date]) => {
@@ -64,10 +69,20 @@ const Split = () => {
   const handleConfirm = () => {
     setIsModalOpen(false);
     setIsModalOpenInner(false);
+    setIsCheckPage(false);
     setIsSnackbarOpen(true); // 스낵바를 열도록 상태 업데이트
   };
   const handleCloseSnackbar = () => {
     setIsSnackbarOpen(false);
+  };
+
+  /* CheckPage */
+  const [isCheckPage, setIsCheckPage] = useState(false);
+  const handleCheckPage = () => {
+    setIsCheckPage(true);
+  };
+  const handleCloseCheckPage = () => {
+    setIsCheckPage(false);
   };
 
   return (
@@ -160,15 +175,14 @@ const Split = () => {
       </div>
 
       {/* 일반 필기분리 모달 */}
-      <div>
-        <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-          <NewSeperate />
-          <ModalButtonHorizon
-            onCancel={handleCloseModal}
-            onConfirm={handleModalOpenInner}
-          />
-        </Modal>
-      </div>
+
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <NewSeperate />
+        <ModalButtonHorizon
+          onCancel={handleCloseModal}
+          onConfirm={handleModalOpenInner}
+        />
+      </Modal>
 
       {/* 히스토리 필기분리 팝업 ex)전에 옮긴 노트에 마저 옮길래? */}
       <Modal isOpen={isNewModalOpen} onClose={handleCloseNewModal}>
@@ -185,8 +199,18 @@ const Split = () => {
         <ModalButtonVertical
           onCancel={handleCloseInnerModal}
           onConfirm={handleConfirm}
+          onCheckPage={handleCheckPage}
         />
       </Modal>
+
+      {/* check page */}
+      <SwiperModal isOpen={isCheckPage} onClose={handleCloseCheckPage}>
+        <CheckPage />
+        <ModalButtonHorizon
+          onCancel={handleCloseCheckPage}
+          onConfirm={handleConfirm}
+        />
+      </SwiperModal>
 
       {/* 스낵바 */}
       {isSnackbarOpen && (

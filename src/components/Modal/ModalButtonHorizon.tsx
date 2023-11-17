@@ -20,7 +20,7 @@ const ModalButtonHorizon: React.FC<ModalButtonHorizonProps> = ({
 }) => {
   return (
     <ModalButtonHorizonStyle>
-      <Button type="button" className="cancle" onClick={onCancel}>
+      <Button type="button" className="cancel" onClick={onCancel}>
         취소
       </Button>
       <Button type="button" className="confirm" onClick={onConfirm}>

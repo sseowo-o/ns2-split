@@ -13,8 +13,8 @@
     article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,canvas{-webkit-text-size-adjust:none;text-size-adjust:none;display:block;margin:0; padding:0; border:0;}
     input, select, textarea {margin:0;padding:0;vertical-align:middle;box-shadow:none;}
     fieldset, img {border:0;outline:0;}
-    html, h1, h2, h3, h4, h5, h6, p, em, font, small, strong{@include font-family;font-weight:normal;font-style:normal;font-size:10px;letter-spacing:-0.02em;-webkit-text-size-adjust:none;text-size-adjust:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-    html{width: 100vw; overflow: hidden;}
+    html, h1, h2, h3, h4, h5, h6, p, em, font, small, strong{@include font-family;font-weight:normal;font-style:normal;letter-spacing:-0.02em;-webkit-text-size-adjust:none;text-size-adjust:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale; font-size:1.2rem;}
+    html{width: 100vw; font-size:10px;overflow: hidden;}
     body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale; max-height: 100vh;margin: 0 auto; word-break: keep-all;}
     code{font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;}
     input,select,textarea,option{letter-spacing:0;}
@@ -31,7 +31,7 @@
     table{width:100%;border-collapse:collapse;border-spacing:0;table-layout:fixed;word-break:break-all;}
     table th, table td{vertical-align:middle;}
     a{display:block;width:100%;height:100%;margin:0;padding:0;background:transparent;cursor:pointer;text-decoration:none;}
-    a:link,a:visited,a:hover,a:active{text-decoration:none;color:inherit;border:none;outline:none;}
+    :link,:visited,:hover,:active{text-decoration:none;color:inherit;border:none;outline:none;}
     .blind{position:absolute;clip:rect(0 0 0 0);width:1px;height:1px;margin:-1px;overflow: hidden;}
     
     
